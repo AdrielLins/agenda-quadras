@@ -1,0 +1,27 @@
+{
+  "name": "agendaquadras",
+  "version": "1.0.0",
+  "description": "projeto integrador II",
+  "main": "server.js",
+  "scripts": {
+    "test": "react"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrielLins/agenda-quadras.git"
+  },
+  "author": "Adriel Lins Maciel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrielLins/agenda-quadras/issues"
+  },
+  "homepage": "https://github.com/AdrielLins/agenda-quadras#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "circular-json": "^0.5.5",
+    "express": "^4.16.3",
+    "http-status-codes": "^1.3.0",
+    "mongoose": "^4.13.15",
+    "morgan": "^1.9.0"
+  }
+}
