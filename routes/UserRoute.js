@@ -6,7 +6,7 @@ const userController = require('../controllers/UserController');
 //create user
 router.post('/create', userController.CreateUser);
 //read user
- router.get('/:id', userController.ReadUser);
+ router.get('/:email', userController.ReadUser);
 //list all
 // router.get('/list', userController.ListUser);
 //update user

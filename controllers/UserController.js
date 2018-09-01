@@ -1,7 +1,8 @@
 const User = require('../models/UserModel');
-var HttpStatus = require('http-status-codes');
+var statusCode = require('http-status-codes');
 
 exports.CreateUser = function (req, res) {
+
     let user = new User({
         email: req.body.email,
         password:req.body.password,
@@ -12,38 +13,50 @@ exports.CreateUser = function (req, res) {
         adm: req.body.adm
     });
 
-    if(user.email == User.find({"email":req.body.email})){
-        res.send('E-mail já em uso!')
-        return
-    }
-
-    if(user.cpf == User.find({cpf:req.body.cpf})){
-        res.send('Cpf já em uso!')
-        res.status(HttpStatus.OK)
-        return
-    }
+    User.findOne({email: req.body.email}).exec(function(err, result) {
+        if (err){
+            res.send(err)
+            return
+        }
+        if (result.email) {
+            return res.status(statusCode.UNAUTHORIZED).send('E-mail já em uso!')          
+        }
+    });
+    
+    User.findOne({cpf: req.body.cpf}).exec(function(err, result) {
+        if (err){
+            res.send(err)
+            return
+        }
+        if (result.cpf) {
+            res.status(statusCode.CONFLICT).send('CPF já em uso!')
+            return
+        }
+    });
 
     user.save(function (err) {
         if (err) {
             return err;
         }
-        res.send('Usuário criado com sucesso!')
-        res.send(HttpStatus.CREATED)
+        res.status(statusCode.CREATED).send('Usuário criado com sucesso!')
         return
     })
 };
 
 exports.ReadUser = function (req, res){
-    User.findById(req.params.id, function (user,err){
+    User.findOne({email: req.params.email}).exec(function(err, result) {
         if (err) {
-            return err;
+            res.send(err)
+            return
+        } 
+        if(!result){
+            res.status(statusCode.NOT_FOUND).send('Usuário não encontrado!')
         }
-        if(user == undefined){
-            res.send("Usuário não encontrado!")
+        else {
+            res.send(result)
             return
         }
-    res.send(user);
-    })
+    });
 };
 //experimental
 exports.ListUser = function (req, res){

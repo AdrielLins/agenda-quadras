@@ -11,4 +11,4 @@ let UserSchema = new Schema({
     adm: {type: Boolean, required: true}
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Users', UserSchema);
