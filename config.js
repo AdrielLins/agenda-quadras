@@ -3,9 +3,9 @@
 const mongoose = require('mongoose');
 // const uniqueValidator = require('mongoose-unique-validator');
 const mongoDBUrl = 'mongodb://admin:masterkey1@ds163181.mlab.com:63181/adrielproject';
-const mongoDB = process.env.MONGODB_URI || mongoDBUrl;
+//const mongoDB = process.env.MONGODB_URI || mongoDBUrl;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDBUrl, { useMongoClient: true  });
 mongoose.Promise = global.Promise;
 
 const connectionDB = mongoose.connection;
