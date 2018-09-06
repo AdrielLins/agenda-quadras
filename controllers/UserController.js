@@ -12,35 +12,37 @@ exports.CreateUser = function (req, res, next) {
         phone: req.body.phone,
         adm: req.body.adm
     });
-
-    User.findOne({email: req.body.email}).exec(function(err, doc) {
+    User.findOne({email: req.body.email}).exec(function(err, emailDoc) {
         if (err){
             res.send(err);
             return;
         }
-        if (doc.email) {
+        if (emailDoc) {
+            var emailUsed = true;
             res.status(statusCode.UNAUTHORIZED).send('E-mail já em uso!');
+            return
         }
+        if (!emailUsed) {
+            User.findOne({cpf: req.body.cpf}).exec(function(err, cpfDoc) {
+                if (err){
+                    res.send(err);
+                    return;
+                }
+                if (cpfDoc) {
+                    res.status(statusCode.CONFLICT).send('CPF já em uso!');
+                    return;
+                } else{
+                    user.save(function (err) {
+                        if (err) {
+                            return err;
+                        }
+                        res.status(statusCode.CREATED).send('Usuário criado com sucesso!')
+                        return;
+                    })
+                }
+            });
+        } 
     });
-    
-    User.findOne({cpf: req.body.cpf}).exec(function(err, doc) {
-        if (err){
-            res.send(err);
-            return;
-        }
-        if (doc.cpf) {
-            res.status(statusCode.CONFLICT).send('CPF já em uso!');
-            return;
-        }
-    });
-
-    user.save(function (err) {
-        if (err) {
-            return err;
-        }
-        res.status(statusCode.CREATED).send('Usuário criado com sucesso!')
-        return;
-    })
 }
 
 exports.ReadUser = function (req, res){
