@@ -2,8 +2,9 @@
 
 const mongoose = require('mongoose');
 const mongoDBUrl = 'mongodb://admin:masterkey1@ds163181.mlab.com:63181/adrielproject';
+const mongoDBUrlLocal = 'mongodb://127.0.0.1:27017/adrielproject';
 
-mongoose.connect(mongoDBUrl, { useMongoClient: true  });
+mongoose.connect(mongoDBUrlLocal, { useMongoClient: true  });
 mongoose.Promise = global.Promise;
 
 const connectionDB = mongoose.connection;
