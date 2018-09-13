@@ -16,10 +16,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script src="/script/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/script/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/script/plugins/iCheck/icheck.min.js"></script>
+  <script src="/script/plugins/iCheck/icheck.min.js"></script>  
 
   <!-- My Scripts -->
   <script type="text/javascript" src="./static/js/handlerUser.js"></script>
+  <script src="./static/plugins/alertifyjs/alertify.js"></script>
+  <!-- My CSSs -->
+  <link rel="stylesheet" href="./static/plugins/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" href="./static/plugins/alertifyjs/css/themes/default.css">
 
 </head>
 <body class="hold-transition login-page">
@@ -43,10 +47,10 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-xs-4">
-            <button onclick="login()" type="submit" class="btn btn-primary btn-flat">Entrar</button>
+            <button onclick="login()" type="button" class="btn btn-primary btn-flat">Entrar</button>
           </div>
           <div class="col-xs-4">
-            <button onclick="register()" type="submit" class="btn btn-primary btn-flat">Cadastre-se!</button>
+            <button onclick="register()" type="button" class="btn btn-primary btn-flat">Cadastre-se!</button>
           </div>
           <!-- /.col -->
         </div>
