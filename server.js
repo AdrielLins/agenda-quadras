@@ -42,24 +42,34 @@ app.use((req, res, next) => {
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.redirect('./script/index2.html');
+    res.redirect('./index.html');
   } else {
     next();
   }
 };
 //check if user is already logged in
 app.get('/', sessionChecker, (req, res) => {
-  res.redirect('/index.html');
+  res.redirect('./login.html');
 });
 
 //check if user is logged in on other pages
 
-app.get('/home', (req, res) => {
+app.get('./index.html', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
-      res.sendFile(__dirname + './script/index2.html');
+    res.sendFile(__dirname + './index.html');
   } else {
     //redirect to login page
-      res.redirect('./index.html');
+    res.redirect('./login');
+  }
+});
+
+// route for user logout
+app.get('/logout', (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.clearCookie('user_sid');
+    res.redirect('/');
+  } else {
+    res.redirect('./login.html');
   }
 });
 

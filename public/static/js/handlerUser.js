@@ -86,6 +86,11 @@ function login() {
         alertify.alert('Atenção!', 'Favor preencha o campo "Senha".');
         return
     }
+    
+    if(!emailValid){
+        alertify.alert('Atenção!', 'Por favor, insira um e-mail válido.');
+        return
+    }
 
     ajaxData = {};
     ajaxData['email'] = email;
@@ -97,10 +102,10 @@ function login() {
     }).done(function (res) {
         console.log(res)
         if (!res) {
-            alertify.alert('Atenção!', 'E-mail ou senha inválidos.');
+            alertify.alert('Atenção!', 'E-mail ou senha incorretos.');
             return
         } else {
-            window.location.href = "/script/index2.html";
+            window.location.href = "./home";
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação.');
