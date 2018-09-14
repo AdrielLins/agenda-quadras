@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Agenda Quadras | Log in</title>
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Admin-LTE -->
+  <link rel="stylesheet" href="/script/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/script/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/script/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="/script/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/script/plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <script src="/script/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/script/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/script/plugins/iCheck/icheck.min.js"></script>
+
+  <!-- My Scripts -->
+  <script type="text/javascript" src="./static/js/handlerUser.js"></script>
+  <script src="./static/plugins/alertifyjs/alertify.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+  <!-- My CSSs -->
+  <link rel="stylesheet" href="./static/plugins/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" href="./static/plugins/alertifyjs/css/themes/default.css">
+
+</head>
+
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="./index.html"><b>Agenda</b>Quadras</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <div class="register-box-body">
+        <p class="login-box-msg">Cadastro de usuário</p>
+        <p class="login-box-msg">Insira seus dados</p>
+        <form>
+          <div class="form-group has-feedback">
+            <input type="text" id="firstName" maxlength="20" class="form-control" placeholder="Nome">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="text" id="lastName" maxlength="50" class="form-control" placeholder="Sobrenome">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="email" id="email" maxlength="50" onblur="isValidEmailAddress()" class="form-control"
+              placeholder="E-mail">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="text" id="cpf" maxlength="14" class="form-control" placeholder="CPF">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="text" id="phone" maxlength="13" class="form-control" placeholder="Telefone">
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" maxlength="15" id="password" class="form-control" placeholder="Senha">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="text-center">
+            <button type="button" onclick="register()" class="btn btn-primary btn-block btn-flat">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+</body>
+
+</html>
+<script>
+  $(document).ready(function () {
+    $("#cpf").mask('000.000.000-00', { reverse: true });
+    $("#phone").mask('(00)000000000');
+  });
+</script>
