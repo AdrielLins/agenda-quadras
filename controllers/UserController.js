@@ -1,6 +1,8 @@
 const User = require('../models/UserModel');
-var statusCode = require('http-status-codes');
 const bcrypt = require('bcrypt');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var statusCode = require('http-status-codes');
 
 exports.CreateUser = function (req, res, next) {
     //encrypt password
@@ -139,7 +141,10 @@ exports.loginUser = function (req, res) {
         if (!doc || !bcrypt.compareSync(req.body.password, doc.password)) {
             res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
         } else {
-            res.send(doc).send('Usuário logado!');
+            req.session.user = doc._id;
+            console.log( req.session.doc);
+            console.log( req.session);
+            res.send(doc);
             return;
         }
     });
