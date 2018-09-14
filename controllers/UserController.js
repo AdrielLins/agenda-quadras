@@ -19,7 +19,7 @@ exports.CreateUser = function (req, res, next) {
         }
         if (emailDoc) {
             var emailUsed = true;
-            res.status(statusCode.UNAUTHORIZED).send('E-mail já em uso!');
+            res.status(statusCode.NO_CONTENT).send('E-mail já em uso!');
             return
         }
         if (!emailUsed) {
@@ -29,7 +29,7 @@ exports.CreateUser = function (req, res, next) {
                     return;
                 }
                 if (cpfDoc) {
-                    res.status(statusCode.CONFLICT).send('CPF já em uso!');
+                    res.status(statusCode.NO_CONTENT).send('CPF já em uso!');
                     return;
                 } else{
                     user.save(function (err) {
@@ -52,7 +52,7 @@ exports.ReadUser = function (req, res){
             return;
         } 
         if(!doc){
-            res.status(statusCode.NOT_FOUND).send('Usuário não encontrado!');
+            res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
         }
         else {
             res.send(doc);
@@ -67,7 +67,7 @@ exports.ListUser = function (req, res){
             return;
         }
         if (!doc) {
-            res.status(statusCode.NOT_FOUND).send('Nenhum registro encontrado!');
+            res.status(statusCode.NO_CONTENT).send('Nenhum registro encontrado!');
         }
         else {
             res.send(doc);
@@ -84,7 +84,7 @@ exports.UpdateUser = function (req, res){
             return;
         }
         if (!doc) {
-            res.status(statusCode.NOT_FOUND).send('E-mail não encontrado!');
+            res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
             User.prototype.findOneAndUpdate({email: userToUpdate},
                 {password:req.body.password,
@@ -112,7 +112,7 @@ exports.DeleteUser = function(req, res) {
             return;
         }
         if (!doc) {
-            res.status(statusCode.NOT_FOUND).send('E-mail não encontrado!');
+            res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
             User.deleteOne({email: userToDelete}, function(err, doc){
                     if(err){
