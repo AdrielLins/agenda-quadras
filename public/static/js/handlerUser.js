@@ -1,19 +1,94 @@
-function login() {
-    var email = $('#email').val();
-    var senha = $('#senha').val();
+var emailValid = false;
 
-    if (!email) {
-        alertify.alert('Atenção!', 'Favor preencha o campo de email.');
+function register() {
+    if (!validateRegisterFields()) {
         return
     }
-    if (!senha) {
-        alertify.alert('Atenção!', 'Favor preencha o campo de senha.');
+    if(!emailValid){
+        alertify.alert('Atenção!', 'Por favor, insira um e-mail válido.');
+        return
+    }
+
+    ajaxData['adm'] = false;
+    $.ajax({
+        type: "POST", url: "/api/users/create/",
+        data: ajaxData
+    }).done(function (res) {
+        console.log(res)
+        if (!res) {
+            alertify.alert('Atenção!', 'E-mail ou Cpf já estão sendo usados!');
+            return
+        } else {
+            window.location.href = "/script/index2.html";
+        }
+    }).fail(function (err) {
+        alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
+        return
+    });
+
+}
+
+function validateRegisterFields() {
+
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var email = $('#email').val();
+    var cpf = $('#cpf').val();
+    var phone = $('#phone').val();
+    var password = $('#password').val();
+
+    if (!firstName) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Nome".');
+        return false;
+    }
+    if (!lastName) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Sobrenome".');
+        return false;
+    }
+    if (!cpf) {
+        alertify.alert('Atenção!', 'Favor preencha o campo de "CPF".');
+        return false;
+    }
+    if (!email) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "E-mail".');
+        return false;
+    }
+    if (!phone) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Telefone".');
+        return false;
+    }
+    if (!password) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Senha".');
+        return false;
+    }
+    ajaxData = {};
+
+    ajaxData['firstName'] = firstName;
+    ajaxData['lastName'] = lastName;
+    ajaxData['cpf'] = cpf;
+    ajaxData['email'] = email;
+    ajaxData['phone'] = phone;
+    ajaxData['password'] = password;
+
+    return ajaxData;
+}
+
+function login() {
+    var email = $('#email').val();
+    var password = $('#password').val();
+
+    if (!email) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "E-mail".');
+        return
+    }
+    if (!password) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Senha".');
         return
     }
 
     ajaxData = {};
     ajaxData['email'] = email;
-    ajaxData['password'] = senha;
+    ajaxData['password'] = password;
 
     $.ajax({
         type: "POST", url: "/api/users/find/",
@@ -23,6 +98,8 @@ function login() {
         if (!res) {
             alertify.alert('Atenção!', 'E-mail ou senha inválidos.');
             return
+        } else {
+            window.location.href = "/script/index2.html";
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação.');
@@ -34,8 +111,10 @@ function isValidEmailAddress() {
     var email = $("#email").val();
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
-    if(!pattern.test(email)){
+    if (!pattern.test(email)) {
         alertify.error('Este não é um e-mail válido!');
+    } else{
+        emailValid = true;
     }
-    return 
+    return emailValid
 }
