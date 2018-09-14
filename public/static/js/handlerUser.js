@@ -69,6 +69,7 @@ function validateRegisterFields() {
     ajaxData['email'] = email;
     ajaxData['phone'] = phone;
     ajaxData['password'] = password;
+    
 
     return ajaxData;
 }
@@ -91,7 +92,7 @@ function login() {
     ajaxData['password'] = password;
 
     $.ajax({
-        type: "POST", url: "/api/users/find/",
+        type: "POST", url: "/api/users/login/",
         data: ajaxData
     }).done(function (res) {
         console.log(res)

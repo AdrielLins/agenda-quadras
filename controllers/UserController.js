@@ -1,11 +1,14 @@
 const User = require('../models/UserModel');
 var statusCode = require('http-status-codes');
+const bcrypt = require('bcrypt');
 
 exports.CreateUser = function (req, res, next) {
+    //encrypt password
+    let hash = bcrypt.hashSync(req.body.password, 10);
 
     let user = new User({
         email: req.body.email,
-        password: req.body.password,
+        password: hash,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         cpf: req.body.cpf,
@@ -124,6 +127,20 @@ exports.DeleteUser = function (req, res) {
                     res.send('Usuário excluido!');
                 }
             });
+        }
+    });
+};
+exports.loginUser = function (req, res) {
+    User.findOne({ email: req.body.email }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc || !bcrypt.compareSync(req.body.password, doc.password)) {
+            res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
+        } else {
+            res.send(doc).send('Usuário logado!');
+            return;
         }
     });
 };

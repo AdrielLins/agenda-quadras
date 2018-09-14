@@ -3,9 +3,18 @@ console.log('Starting server');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var morgan = require('morgan');
 const app = express();
 const cors = require('cors');
 const connectionDB = require('./config/config');
+
+// Set morgan to log info about our requests for development use.
+app.use(morgan('dev'));
+
+// initialize cookie-parser to allow access to the cookies stored in the browser. 
+app.use(cookieParser());
 
 // Set body parser middleware
 app.use(bodyParser.json());
