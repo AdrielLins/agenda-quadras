@@ -5,15 +5,15 @@ exports.CreateUser = function (req, res, next) {
 
     let user = new User({
         email: req.body.email,
-        password:req.body.password,
+        password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         cpf: req.body.cpf,
         phone: req.body.phone,
         adm: req.body.adm
     });
-    User.findOne({email: req.body.email}).exec(function(err, emailDoc) {
-        if (err){
+    User.findOne({ email: req.body.email }).exec(function (err, emailDoc) {
+        if (err) {
             res.send(err);
             return;
         }
@@ -23,15 +23,15 @@ exports.CreateUser = function (req, res, next) {
             return
         }
         if (!emailUsed) {
-            User.findOne({cpf: req.body.cpf}).exec(function(err, cpfDoc) {
-                if (err){
+            User.findOne({ cpf: req.body.cpf }).exec(function (err, cpfDoc) {
+                if (err) {
                     res.send(err);
                     return;
                 }
                 if (cpfDoc) {
                     res.status(statusCode.NO_CONTENT).send('CPF já em uso!');
                     return;
-                } else{
+                } else {
                     user.save(function (err) {
                         if (err) {
                             return err;
@@ -41,17 +41,17 @@ exports.CreateUser = function (req, res, next) {
                     })
                 }
             });
-        } 
+        }
     });
 }
 
-exports.ReadUser = function (req, res){
-    User.findOne({email: req.body.email}).exec(function(err, doc) {
+exports.ReadUser = function (req, res) {
+    User.findOne({ email: req.body.email }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
-        } 
-        if(!doc){
+        }
+        if (!doc) {
             res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
         }
         else {
@@ -60,8 +60,8 @@ exports.ReadUser = function (req, res){
         }
     });
 };
-exports.ListUser = function (req, res){
-    User.find({}).exec(function(err, doc) {
+exports.ListUser = function (req, res) {
+    User.find({}).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
@@ -76,52 +76,54 @@ exports.ListUser = function (req, res){
     });
 };
 
-exports.UpdateUser = function (req, res){
+exports.UpdateUser = function (req, res) {
     var userToUpdate = req.body.email
-    User.findOne({email: userToUpdate}).exec(function(err, doc) {
-        if (err){
+    User.findOne({ email: userToUpdate }).exec(function (err, doc) {
+        if (err) {
             res.send(err);
             return;
         }
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
-            User.prototype.findOneAndUpdate({email: userToUpdate},
-                {password:req.body.password,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                phone: req.body.phone,
-                adm:req.body.adm},
-                {new: true}, function(err, doc){
-                    if(err){
+            User.prototype.findOneAndUpdate({ email: userToUpdate },
+                {
+                    password: req.body.password,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    phone: req.body.phone,
+                    adm: req.body.adm
+                },
+                { new: true }, function (err, doc) {
+                    if (err) {
                         res.send(doc);
                         return;
                     } else {
                         res.send('Usuário atualizado!');
                     }
                 });
-            }
+        }
     });
 };
 
-exports.DeleteUser = function(req, res) {
+exports.DeleteUser = function (req, res) {
     var userToDelete = req.body.email;
-    User.findOne({email: userToDelete}).exec(function(err, doc) {
-        if (err){
+    User.findOne({ email: userToDelete }).exec(function (err, doc) {
+        if (err) {
             res.send(err);
             return;
         }
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
-            User.deleteOne({email: userToDelete}, function(err, doc){
-                    if(err){
-                        res.send(doc);
-                        return;
-                    } else {
-                        res.send('Usuário excluido!');
-                    }
-                });
-            }
+            User.deleteOne({ email: userToDelete }, function (err, doc) {
+                if (err) {
+                    res.send(doc);
+                    return;
+                } else {
+                    res.send('Usuário excluido!');
+                }
+            });
+        }
     });
 };

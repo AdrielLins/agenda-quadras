@@ -9,7 +9,7 @@ const connectionDB = require('./config/config');
 
 // Set body parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Set public folder
 app.use(express.static('public'));
@@ -27,14 +27,14 @@ app.use((err, req, res, next) => {
   res.status(400).json({ err: err });
 });
 
-if(process.env.NODE_ENV !== 'production') {
-    process.once('uncaughtException', function(err) {
-      console.error('FATAL: Uncaught exception.');
-      console.error(err.stack||err);
-      setTimeout(function(){
-        process.exit(1);
-      }, 100);
-    });
+if (process.env.NODE_ENV !== 'production') {
+  process.once('uncaughtException', function (err) {
+    console.error('FATAL: Uncaught exception.');
+    console.error(err.stack || err);
+    setTimeout(function () {
+      process.exit(1);
+    }, 100);
+  });
 }
 const port = process.env.PORT || 5000;
 
