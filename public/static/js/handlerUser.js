@@ -1,4 +1,5 @@
 var emailValid = false;
+var passwordEqual = false;
 
 function register() {
     if (!validateRegisterFields()) {
@@ -8,24 +9,89 @@ function register() {
         alertify.alert('Atenção!', 'Por favor, insira um e-mail válido.');
         return
     }
+    if(!passwordEqual){
+        alertify.alert('Atenção!', 'Por favor, insira a mesma senha no campo "Confirmação de senha".');
+        return
+    }
 
     ajaxData['adm'] = false;
     $.ajax({
         type: "POST", url: "/api/users/create/",
         data: ajaxData
     }).done(function (res) {
-        console.log(res)
         if (!res) {
             alertify.alert('Atenção!', 'E-mail ou Cpf já estão sendo usados!');
             return
         } else {
-            window.location.href = "/script/index2.html";
+            window.location.href = "./home.html";
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
         return
     });
 
+}
+
+function login() {
+    var email = $('#email').val();
+    var password = $('#password').val();
+
+    if (!email) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "E-mail".');
+        return
+    }
+    if (!password) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Senha".');
+        return
+    }
+    
+    if(!emailValid){
+        alertify.alert('Atenção!', 'Por favor, insira um e-mail válido.');
+        return
+    }
+
+    ajaxData = {};
+    ajaxData['email'] = email;
+    ajaxData['password'] = password;
+
+    $.ajax({
+        type: "POST", url: "/api/users/login/",
+        data: ajaxData
+    }).done(function (res) {
+        if (!res) {
+            alertify.alert('Atenção!', 'E-mail ou senha incorretos.');
+            return
+        } else {
+            window.location.href = "./home.html";
+        }
+    }).fail(function (err) {
+        alertify.alert('Erro', 'Não foi possível realizar esta solicitação.');
+        return
+    });
+}
+
+function isValidEmailAddress() {
+    var email = $("#email").val();
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
+    if (!pattern.test(email)) {
+        alertify.error('Este não é um e-mail válido!');
+    } else{
+        emailValid = true;
+    }
+    return emailValid
+}
+function isEqualPassword() {
+    var password = $("#password").val();
+    var passwordConfirm = $("#passwordConfirm").val();
+   
+
+    if (password == passwordConfirm) {
+        passwordEqual = true;
+    } else{
+        alertify.error('As senhas não são iguais!');
+    }
+    return passwordEqual
 }
 
 function validateRegisterFields() {
@@ -72,55 +138,4 @@ function validateRegisterFields() {
     
 
     return ajaxData;
-}
-
-function login() {
-    var email = $('#email').val();
-    var password = $('#password').val();
-
-    if (!email) {
-        alertify.alert('Atenção!', 'Favor preencha o campo "E-mail".');
-        return
-    }
-    if (!password) {
-        alertify.alert('Atenção!', 'Favor preencha o campo "Senha".');
-        return
-    }
-    
-    if(!emailValid){
-        alertify.alert('Atenção!', 'Por favor, insira um e-mail válido.');
-        return
-    }
-
-    ajaxData = {};
-    ajaxData['email'] = email;
-    ajaxData['password'] = password;
-
-    $.ajax({
-        type: "POST", url: "/api/users/login/",
-        data: ajaxData
-    }).done(function (res) {
-        console.log(res)
-        if (!res) {
-            alertify.alert('Atenção!', 'E-mail ou senha incorretos.');
-            return
-        } else {
-            window.location.href = "./home";
-        }
-    }).fail(function (err) {
-        alertify.alert('Erro', 'Não foi possível realizar esta solicitação.');
-        return
-    });
-}
-
-function isValidEmailAddress() {
-    var email = $("#email").val();
-    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-
-    if (!pattern.test(email)) {
-        alertify.error('Este não é um e-mail válido!');
-    } else{
-        emailValid = true;
-    }
-    return emailValid
 }

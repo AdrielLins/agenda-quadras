@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set morgan to log info about our requests for development use.
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 
 // initialize cookie-parser to allow access to the cookies stored in the browser. 
 app.use(cookieParser());
@@ -39,14 +39,18 @@ app.use((req, res, next) => {
   next();
 });
 
+//Set public folder
+app.use(express.static('public'));
+
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.redirect('./index.html');
+    res.redirect('./home.html');
   } else {
     next();
   }
 };
+
 //check if user is already logged in
 app.get('/', sessionChecker, (req, res) => {
   res.redirect('./login.html');
@@ -54,12 +58,21 @@ app.get('/', sessionChecker, (req, res) => {
 
 //check if user is logged in on other pages
 
-app.get('./index.html', (req, res) => {
+app.get('/home.html', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
-    res.sendFile(__dirname + './index.html');
+    res.sendFile('./home.html');
   } else {
     //redirect to login page
-    res.redirect('./login');
+    res.redirect('./login.html');
+  }
+});
+
+app.get('/home', (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.sendFile('./home.html');
+  } else {
+    //redirect to login page
+    res.redirect('./login.html');
   }
 });
 
@@ -72,9 +85,6 @@ app.get('/logout', (req, res) => {
     res.redirect('./login.html');
   }
 });
-
-//Set public folder
-app.use(express.static('public'));
 
 //import admin lte
 app.use('/script', express.static(__dirname + '/node_modules/admin-lte/'));

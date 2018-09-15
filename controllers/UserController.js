@@ -17,12 +17,12 @@ exports.CreateUser = function (req, res, next) {
         phone: req.body.phone,
         adm: req.body.adm
     });
-    User.findOne({ email: req.body.email }).exec(function (err, emailDoc) {
+    User.findOne({ email: req.body.email }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
         }
-        if (emailDoc) {
+        if (doc) {
             var emailUsed = true;
             res.status(statusCode.NO_CONTENT).send('E-mail já em uso!');
             return
@@ -41,6 +41,7 @@ exports.CreateUser = function (req, res, next) {
                         if (err) {
                             return err;
                         }
+                        req.session.user = user.email;
                         res.status(statusCode.CREATED).send('Usuário criado com sucesso!')
                         return;
                     })
@@ -141,9 +142,7 @@ exports.loginUser = function (req, res) {
         if (!doc || !bcrypt.compareSync(req.body.password, doc.password)) {
             res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
         } else {
-            req.session.user = doc._id;
-            console.log( req.session.doc);
-            console.log( req.session);
+            req.session.user = doc.email;
             res.send(doc);
             return;
         }

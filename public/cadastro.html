@@ -49,7 +49,7 @@
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="email" id="email" maxlength="50" onblur="isValidEmailAddress()" class="form-control"
+            <input type="email" id="email" maxlength="100" onblur="isValidEmailAddress()" class="form-control"
               placeholder="E-mail">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
@@ -62,7 +62,11 @@
             <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" minlength="6" maxlength="15" id="password" class="form-control" placeholder="Senha">
+            <input type="password" maxlength="15" id="password" class="form-control" placeholder="Senha">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" maxlength="15" onblur="isEqualPassword()" id="passwordConfirm" class="form-control" placeholder="Cofirmação de senha">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="text-center">
