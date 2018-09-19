@@ -20,6 +20,7 @@
   <script src="/script/plugins/iCheck/icheck.min.js"></script>
 
   <!-- My Scripts -->
+  <script type="text/javascript" src="./static/js/validate.js"></script>
   <script type="text/javascript" src="./static/js/handlerUser.js"></script>
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
   <!-- My CSSs -->
@@ -60,3 +61,8 @@
 </body>
 
 </html>
+<script>
+  $(document).ready(function () {
+    $("#email").blur();
+  });
+</script>
