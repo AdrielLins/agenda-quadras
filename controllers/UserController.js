@@ -1,14 +1,12 @@
 const User = require('../models/UserModel');
 const bcrypt = require('bcrypt');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
 var statusCode = require('http-status-codes');
 
 exports.CreateUser = function (req, res, next) {
     //encrypt password
     let hash = bcrypt.hashSync(req.body.password, 10);
 
-    let user = new User({
+    let newUser = new User({
         email: req.body.email,
         password: hash,
         firstName: req.body.firstName,
@@ -37,11 +35,11 @@ exports.CreateUser = function (req, res, next) {
                     res.status(statusCode.NO_CONTENT).send('CPF já em uso!');
                     return;
                 } else {
-                    user.save(function (err) {
+                    newUser.save(function (err) {
                         if (err) {
                             return err;
                         }
-                        req.session.user = user.email;
+                        req.session.user = newUser.email;
                         res.status(statusCode.CREATED).send('Usuário criado com sucesso!')
                         return;
                     })
