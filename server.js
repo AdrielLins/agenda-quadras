@@ -10,15 +10,10 @@ const app = express();
 const cors = require('cors');
 const connectionDB = require('./config/config');
 
-// Set body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// Set morgan to log info about our requests for development use.
-//app.use(morgan('dev'));
-
 // initialize cookie-parser to allow access to the cookies stored in the browser. 
 app.use(cookieParser());
+
+var session = require('express-session');
 
 // initialize express-session to allow us track the logged-in user across sessions.
 app.use(session({
@@ -39,58 +34,23 @@ app.use((req, res, next) => {
   next();
 });
 
-//Set public folder
-app.use(express.static('public'));
+// Set body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// middleware function to check for logged-in users
-var sessionChecker = (req, res, next) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.redirect('./home.html');
-  } else {
-    next();
-  }
-};
-
-//check if user is already logged in
-app.get('/', sessionChecker, (req, res) => {
-  res.redirect('./login.html');
-});
-
-//check if user is logged in on other pages
-
-app.get('/home.html', (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.sendFile('./home.html');
-  } else {
-    //redirect to login page
-    res.redirect('./login.html');
-  }
-});
-
-app.get('/home', (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.sendFile('./home.html');
-  } else {
-    //redirect to login page
-    res.redirect('./login.html');
-  }
-});
-
-// route for user logout
-app.get('/logout', (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.clearCookie('user_sid');
-    res.redirect('/');
-  } else {
-    res.redirect('./login.html');
-  }
-});
+// Set morgan to log info about our requests for development use.
+//app.use(morgan('dev'));
 
 //import admin lte
 app.use('/script', express.static(__dirname + '/node_modules/admin-lte/'));
 
 // Initialize users routes
 app.use('/api/users', require('./routes/UserRoute'));
+
+app.use('/', require('./routes/navigationRoutes'));
+
+//Set public folder
+app.use(express.static('public'));
 
 //Enable cross origin requests
 if (process.env.CORS) {
