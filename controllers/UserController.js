@@ -90,7 +90,7 @@ exports.UpdateUser = function (req, res) {
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
-            User.prototype.findOneAndUpdate({ email: userToUpdate },
+            User.findOneAndUpdate({ email: userToUpdate },
                 {
                     password: req.body.password,
                     firstName: req.body.firstName,
