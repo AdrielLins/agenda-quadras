@@ -60,7 +60,6 @@ exports.ListField = function (req, res) {
 
 exports.UpdateField = function (req, res) {
     var fieldToUpdate = req.body.numero
-    console.log("aaaaaaaaaaaaaaa"+fieldToUpdate)
     Field.findOne({ numero: fieldToUpdate }).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -86,8 +85,8 @@ exports.UpdateField = function (req, res) {
 };
 
 exports.DeleteField = function (req, res) {
-    var fieldToDelete = req.body.email;
-    Field.findOne({ email: fieldToDelete }).exec(function (err, doc) {
+    var fieldToDelete = req.body.numero;
+    Field.findOne({ numero: fieldToDelete }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
@@ -95,7 +94,7 @@ exports.DeleteField = function (req, res) {
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('Quadra não encontrada!');
         } else {
-            Field.deleteOne({ email: fieldToDelete }, function (err, doc) {
+            Field.deleteOne({ numero: fieldToDelete }, function (err, doc) {
                 if (err) {
                     res.send(doc);
                     return;
