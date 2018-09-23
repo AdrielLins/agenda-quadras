@@ -44,13 +44,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //import admin lte
 app.use('/script', express.static(__dirname + '/node_modules/admin-lte/'));
 
-// Initialize api users routes
+// Initialize api routes
 app.use('/api/users', require('./routes/UserRoute'));
-
-// Initialize api fields routes
 app.use('/api/fields', require('./routes/FieldRoute'));
+app.use('/api/sports', require('./routes/SportRoute'));
 
-// Initialize navigation for users routes
+// Initialize routes for user navigation
 app.use('/', require('./routes/navigationRoutes'));
 
 //Set public folder
