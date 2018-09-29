@@ -20,7 +20,7 @@ describe('Users', () => {
     describe('/Criação de usuário', () => {
         it('Deve criar um usuário no banco', (done) => {
             let newUser = {
-                email: "teste@teste.com",
+                email: "testeunitario@testeunitario.com",
                 password: "123456",
                 firstName: "Pedro",
                 lastName: "Testador",
@@ -45,7 +45,7 @@ describe('Users', () => {
     describe('/Retornar dados de um usuário específico', () => {
         it('Deve retornar os dados do usuário pesquisado por e-mail', (done) => {
             let findUser = {
-                email: "teste@teste.com"
+                email: "testeunitario@testeunitario.com"
             };
             chai.request(server)
                 .post('/api/users/find/')
@@ -73,12 +73,12 @@ describe('Users', () => {
         });
     });
     /*
-  * Teste da função da api de listagem de usuários
-  */
+    * Teste da função da api de update de usuários
+    */
     describe('/Update de usuário', () => {
         it('Deve ser realizado a atualização de um usuário no banco', (done) => {
             let newUser = {
-                email: "teste@teste.com",
+                email: "testeunitario@testeunitario.com",
                 password: "123456789",
                 firstName: "Pedroca",
                 lastName: "Testador",
@@ -97,10 +97,13 @@ describe('Users', () => {
         });
 
     });
+    /*
+    * Teste da função da api de delete de usuários
+    */
     describe('/Deve deletar usuário específicado', () => {
         it('Deve deletar o o usuário do banco', (done) => {
             let deleteUser = {
-                email: "teste@teste.com"
+                email: "testeunitario@testeunitario.com"
             };
             chai.request(server)
                 .post('/api/users/delete/')
