@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "projeto integrador II",
   "main": "server.js",
-  "scripts": {
-    "test": "react"
+  "scripts": {    
+    "start": "SET NODE_ENV=dev && nodemon server.js",
+    "test": "mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,9 @@
     "sequelize": "^4.38.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.4"
   }
 }

@@ -1,10 +1,12 @@
 // Configurações de conexão com o banco
 
 const mongoose = require('mongoose');
+
 const mongoDBUrl = 'mongodb://admin:masterkey1@ds163181.mlab.com:63181/adrielproject';
+const testsOnlyMongoDBUrl = 'mongodb://admin:masterkey1@ds119113.mlab.com:19113/adrielprojectfortests';
 const mongoDBUrlLocal = 'mongodb://127.0.0.1:27017/';
 
-mongoose.connect(mongoDBUrlLocal, { useMongoClient: true });
+mongoose.connect(testsOnlyMongoDBUrl, { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 const connectionDB = mongoose.connection;
