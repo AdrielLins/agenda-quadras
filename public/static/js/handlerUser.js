@@ -23,6 +23,9 @@ function register() {
             alertify.alert('Atenção!', 'E-mail ou Cpf já estão sendo usados!');
             return
         } else {
+            localStorage.setItem('loggedUserName', ajaxData['firstName']);
+            localStorage.setItem('loggedUserLastName', ajaxData['lastName']);
+            localStorage.setItem('loggedUserEmail', ajaxData['email']);
             window.location.href = "./home.html";
         }
     }).fail(function (err) {
@@ -62,6 +65,10 @@ function login() {
             alertify.alert('Atenção!', 'E-mail ou senha incorretos.');
             return
         } else {
+            localStorage.setItem('loggedUserName', res.firstName);
+            localStorage.setItem('loggedUserLastName', res.lastName);
+            localStorage.setItem('loggedUserEmail', res.email);
+            localStorage.setItem('loggedUserLevel', res.adm);
             window.location.href = "./home.html";
         }
     }).fail(function (err) {

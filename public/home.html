@@ -28,6 +28,9 @@
   <!-- My CSSs -->
   <link rel="stylesheet" href="./static/plugins/alertifyjs/css/alertify.css">
   <link rel="stylesheet" href="./static/plugins/alertifyjs/css/themes/default.css">
+  <script type="text/javascript">
+      var loggedUser = localStorage.getItem('loggedUserName');
+  </script>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -55,7 +58,7 @@
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <li>
-              <a href="/logout" class="glyphicon glyphicon-off"> Sair</a>
+              <a onclick="localStorage.clear()" href="/logout" class="glyphicon glyphicon-off"> Sair</a>
             </li>
           </ul>
         </div>
@@ -70,7 +73,7 @@
       <section class="sidebar">
         <!-- Sidebar user panel -->
         <div id="#userNameDiv" class="user-panel" style="color:white">
-          <p>Alexander Pierce</p>
+          <h2>Olá <script type="text/javascript">document.write(loggedUser)</script>!</h2>
         </div>
         <!-- search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -405,7 +408,6 @@
     $(document).ready(function () {
       $('.sidebar-menu').tree();
     })
-
   </script>
 </body>
 
