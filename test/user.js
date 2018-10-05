@@ -15,15 +15,15 @@ chai.use(chaiHttp);
 //Our parent block
 describe('Users', () => {
     /*
-      * Teste da função da api de listagem de usuários
-      */
+    * Teste da função da api para criação de usuário
+    */
     describe('/Criação de usuário', () => {
         it('Deve criar um usuário no banco', (done) => {
             let newUser = {
-                email: "testeunitario@testeunitario.com",
-                password: "123456",
-                firstName: "Pedro",
-                lastName: "Testador",
+                email: "teste123@teste.com",
+                password: "0123456",
+                firstName: "Teste",
+                lastName: "Testando",
                 cpf: "999.999.999-99",
                 phone: "(54)999999999",
                 adm: 1
@@ -40,12 +40,32 @@ describe('Users', () => {
 
     });
     /*
-      * Teste da função da api para encontrar usuário por e-mail
-      */
+    * Teste de login da api de usuários
+    */
+    describe('/Login de usuário', () => {
+        it('Deve ser realizado o login de um usuário cadastrado no banco', (done) => {
+            let logUser = {
+                email: "teste123@teste.com",
+                password: "0123456",
+            };
+            chai.request(server)
+                .post('/api/users/login/')
+                .send(logUser)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    done();
+                });
+        });
+
+    });
+    /*
+    * Teste da função da api para encontrar usuário por e-mail
+    */
     describe('/Retornar dados de um usuário específico', () => {
         it('Deve retornar os dados do usuário pesquisado por e-mail', (done) => {
             let findUser = {
-                email: "testeunitario@testeunitario.com"
+                email: "teste123@teste.com"
             };
             chai.request(server)
                 .post('/api/users/find/')
@@ -78,10 +98,9 @@ describe('Users', () => {
     describe('/Update de usuário', () => {
         it('Deve ser realizado a atualização de um usuário no banco', (done) => {
             let newUser = {
-                email: "testeunitario@testeunitario.com",
-                password: "123456789",
-                firstName: "Pedroca",
-                lastName: "Testador",
+                email: "teste123@teste.com",
+                firstName: "Teste",
+                lastName: "Testando",
                 cpf: "999.999.999-99",
                 phone: "(54)999999999",
                 adm: 1
@@ -103,7 +122,7 @@ describe('Users', () => {
     describe('/Deve deletar usuário específicado', () => {
         it('Deve deletar o o usuário do banco', (done) => {
             let deleteUser = {
-                email: "testeunitario@testeunitario.com"
+                email: "teste123@teste.com"
             };
             chai.request(server)
                 .post('/api/users/delete/')
