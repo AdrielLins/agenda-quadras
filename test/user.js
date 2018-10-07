@@ -21,11 +21,12 @@ describe('Users', () => {
         it('Deve criar um usuário no banco', (done) => {
             let newUser = {
                 email: "teste123@teste.com",
-                password: "0123456",
+                password: "123456",
                 firstName: "Teste",
                 lastName: "Testando",
                 cpf: "999.999.999-99",
                 phone: "(54)999999999",
+                active: true,
                 adm: 1
             };
             chai.request(server)
@@ -46,7 +47,7 @@ describe('Users', () => {
         it('Deve ser realizado o login de um usuário cadastrado no banco', (done) => {
             let logUser = {
                 email: "teste123@teste.com",
-                password: "0123456",
+                password: "123456",
             };
             chai.request(server)
                 .post('/api/users/login/')
@@ -99,10 +100,12 @@ describe('Users', () => {
         it('Deve ser realizado a atualização de um usuário no banco', (done) => {
             let newUser = {
                 email: "teste123@teste.com",
+                password: "0123456",
                 firstName: "Teste",
                 lastName: "Testando",
                 cpf: "999.999.999-99",
                 phone: "(54)999999999",
+                active: true,
                 adm: 1
             };
             chai.request(server)

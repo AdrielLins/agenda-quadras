@@ -13,6 +13,7 @@ exports.CreateUser = function (req, res, next) {
         lastName: req.body.lastName,
         cpf: req.body.cpf,
         phone: req.body.phone,
+        active: req.body.active,
         adm: req.body.adm
     });
     User.findOne({ email: req.body.email }).exec(function (err, doc) {
@@ -92,10 +93,10 @@ exports.UpdateUser = function (req, res) {
         } else {
             User.findOneAndUpdate({ email: userToUpdate },
                 {
-                    password: req.body.password,
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     phone: req.body.phone,
+                    active: req.body.active,
                     adm: req.body.adm
                 },
                 { new: true }, function (err, doc) {

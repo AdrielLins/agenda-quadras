@@ -8,6 +8,7 @@ let UserSchema = new Schema({
     lastName: { type: String, required: true, max: 100 },
     cpf: { type: String, required: true, max: 30 },
     phone: { type: String, required: true, max: 30 },
+    active:{type: Boolean, required: true},
     adm: { type: Boolean, required: true }
 });
 
