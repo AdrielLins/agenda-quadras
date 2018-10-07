@@ -73,3 +73,40 @@ function validateRegisterFields() {
 
     return ajaxData;
 }
+
+function validateUpdateFields() {
+
+    var firstName = $('#firstNameUp').val();
+    var lastName = $('#lastNameUp').val();
+    var email = $('#emailUp').val();
+    var cpf = $('#cpfUp').val();
+    var phone = $('#phoneUp').val();
+    var password = $('#passwordUp').val();
+    var active = $('#activeUp').val();
+    var adm = $('#admUp').val();
+
+    if (!firstName) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Nome".');
+        return false;
+    }
+    if (!lastName) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Sobrenome".');
+        return false;
+    }
+    if (!phone) {
+        alertify.alert('Atenção!', 'Favor preencha o campo "Telefone".');
+        return false;
+    }
+    
+    ajaxData = {};
+
+    ajaxData['firstName'] = firstName;
+    ajaxData['lastName'] = lastName;
+    ajaxData['cpf'] = cpf;
+    ajaxData['email'] = email;
+    ajaxData['phone'] = phone;
+    ajaxData['active'] = active;
+    ajaxData['adm'] = adm;
+
+    return ajaxData;
+}
