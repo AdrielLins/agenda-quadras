@@ -12,6 +12,16 @@ router.get('/', (req, res) => {
     }
 });
 
+//check if user is already logged in while goin to home page with post method
+router.post('/home.html', (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('./home.html');
+        next();
+    } else {
+        res.redirect('./login.html');
+    }
+});
+
 //check if user is already logged in while goin to home page
 router.get('/home.html', (req, res, next) => {
     if (req.session.user && req.cookies.user_sid) {
