@@ -66,6 +66,10 @@ function login() {
             alertify.alert('Atenção!', 'E-mail ou senha incorretos.');
             return
         } else {
+            if(!res.active){
+                alertify.alert('Atenção!', 'Este usuário está inativo, favor entrar em contato com um administrador.');
+                return
+            }
             localStorage.setItem('loggedUserName', res.firstName);
             localStorage.setItem('loggedUserEmail', res.email);
             localStorage.setItem('loggedUserNameLvl', res.adm);
@@ -176,6 +180,7 @@ function findUserForUpdate(userEmail) {
                 var lastname = ajaxData['lastName'];
                 var cpf = ajaxData['cpf'];
                 var phone = ajaxData['phone'];
+                var password = ajaxData['password'];
                 var active = ajaxData['active'];
                 var adm = ajaxData['adm'];
 
@@ -185,7 +190,7 @@ function findUserForUpdate(userEmail) {
                 $('#cpfUp').val(cpf);
                 $('#phoneUp').val(phone);
                 $('#activeUp').val(active);
-                $('#admUp').val(option[$select.attr(adm)]);             
+                $('#admUp').val(adm);             
 
             }
 

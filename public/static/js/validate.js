@@ -97,6 +97,14 @@ function validateUpdateFields() {
         alertify.alert('Atenção!', 'Favor preencha o campo "Telefone".');
         return false;
     }
+    if (adm == null) {
+        alertify.alert('Atenção!', 'Favor selecione o nível do usuário.');
+        return false;
+    }
+    if (active == null) {
+        alertify.alert('Atenção!', 'Favor selecione o status do usuário.');
+        return false;
+    }
     
     ajaxData = {};
 
@@ -105,6 +113,7 @@ function validateUpdateFields() {
     ajaxData['cpf'] = cpf;
     ajaxData['email'] = email;
     ajaxData['phone'] = phone;
+    ajaxData['password'] = password;
     ajaxData['active'] = active;
     ajaxData['adm'] = adm;
 
