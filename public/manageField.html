@@ -109,10 +109,10 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-folder"></i> Usuários</a></li>
+              <li><a href="manageUser.html"><i class="fa fa-folder"></i> Usuários</a></li>
               <li><a href="manageAgenda.html"><i class="fa fa-folder"></i> Horários</a></li>
               <li><a href="manageMatch.html"><i class="fa fa-folder"></i> Disputas</a></li>
-              <li><a href="manageField.html"><i class="fa fa-folder"></i> Quadras</a></li>
+              <li><a href="#"><i class="fa fa-folder"></i> Quadras</a></li>
               <li><a href="manageSport.html"><i class="fa fa-folder"></i> Esportes</a></li>
             </ul>
           </li>
@@ -141,10 +141,10 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                <button type="button" id="userManageButtonCreate" href="#" onclick="showCreateUser()" class="btn btn-primary btn-flat">Criar
-                  novo
-                  usuário</button>
-                <button type="button" id="userManageButtonList" onclick="listUser()" class="btn btn-primary btn-flat">Listagem
+                <button type="button" id="fieldManageButtonCreate" href="#" onclick="showCreateField()" class="btn btn-primary btn-flat">Criar
+                  nova
+                  Quadra</button>
+                <button type="button" id="fieldManageButtonList" onclick="listField()" class="btn btn-primary btn-flat">Listagem
                   e edição</button>
               </div>
               <!-- user-list -->
@@ -157,7 +157,7 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <table id="userTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
+                      <table id="fieldTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
                         aria-describedby="example2_info">
                         <thead>
                           <tr role="row">
@@ -190,7 +190,7 @@
               <!-- user-create -->
               <div class="box-body">
                 <div class="row">
-                  <div id="userTableCreate" class="hidden">
+                  <div id="fieldTableCreate" class="hidden">
                     <div class="box-body">
                       <form role="form-horizontal">
                         <div class="form-group has-feedback">
@@ -249,7 +249,7 @@
             <!-- user-update -->
             <div class="box-body">
               <div class="row">
-                <div id="userTableUpdate" class="hidden">
+                <div id="fieldTableUpdate" class="hidden">
                   <div class="box-body">
                     <form role="form-horizontal">
                       <div class="form-group has-feedback">
@@ -346,25 +346,21 @@
         $("#ferramentasAdm").removeClass("hidden");
       }
     })
-    function showCreateUser() {
-      $("#userTableList").addClass("hidden").removeClass("tableListed");
+    function showCreateField() {
+      $("#fieldTableList").addClass("hidden").removeClass("tableListed");
 
-      $("#userTableCreate").removeClass("hidden");
+      $("#fieldTableCreate").removeClass("hidden");
       $(".listed").remove();
     };
     function showUpdateUser(userEmail) {
-      $('#userManageButtonCreate').prop("disabled", true)
-      $('#userManageButtonList').prop("disabled", true)
+      $('#fieldManageButtonCreate').prop("disabled", true)
+      $('#fieldManageButtonList').prop("disabled", true)
 
-      $("#userTableList").addClass("hidden").removeClass("tableListed");
-      $("#userTableUpdate").removeClass("hidden");
+      $("#fieldTableList").addClass("hidden").removeClass("tableListed");
+      $("#fieldTableUpdate").removeClass("hidden");
       $(".listed").remove();
 
-      $("#emailUp").blur();
-      $("#cpfUp").blur();
-      $("#phoneUp").blur();
-
-      findUserForUpdate(userEmail);
+      findFieldForUpdate(userEmail);
     };
   </script>
 </body>
