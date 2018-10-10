@@ -81,14 +81,9 @@ exports.ListUser = function (req, res) {
     });
 };
 
-exports.UpdateUser = function (req, res) {
+exports.UpdateUser = async function (req, res) {
     let updatePassword = bcrypt.hashSync(req.body.password, 10);
     var userToUpdate = req.body.email
-    if(req.body.password == null){
-                updatePassword == doc.password
-            } else {
-
-            }
     User.findOne({ email: userToUpdate }).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -97,9 +92,9 @@ exports.UpdateUser = function (req, res) {
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
-            if(req.body.password == null){
+            if( req.body.password == ''){
                 //only changes password if it comes in the request
-                updatePassword == doc.password
+                updatePassword = doc.password;
             }
             User.findOneAndUpdate({ email: userToUpdate },
                 {
