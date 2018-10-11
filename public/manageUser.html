@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <!-- My Scripts -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-  <script type="text/javascript" src="./static/js/validate.js"></script>
+  <script type="text/javascript" src="./static/js/validateUser.js"></script>
   <script type="text/javascript" src="./static/js/handlerUser.js"></script>
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
   <!-- My CSSs -->
@@ -340,7 +340,7 @@
     });
     $(document).ready(function () {
       $('.sidebar-menu').tree();
-      if (!loggedUserLevel) {
+      if (loggedUserLevel == "false" || !loggedUserLevel ) {
         $("#ferramentasAdm").remove();
       } else {
         $("#ferramentasAdm").removeClass("hidden");
