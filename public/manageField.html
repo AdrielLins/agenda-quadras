@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <!-- My Scripts -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-  <script type="text/javascript" src="./static/js/validate.js"></script>
-  <script type="text/javascript" src="./static/js/handlerUser.js"></script>
+  <script type="text/javascript" src="./static/js/validateField.js"></script>
+  <script type="text/javascript" src="./static/js/handlerField.js"></script>
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
   <!-- My CSSs -->
   <script type="text/javascript">
@@ -162,19 +162,9 @@
                         <thead>
                           <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-sort="ascending" aria-label="Nome engine: activate to sort column descending">Nome</th>
+                              aria-sort="ascending" aria-label="Nome engine: activate to sort column descending">Número</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Sobre nome</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="CPF: activate to sort column ascending">CPF</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="E-mail: activate to sort column ascending">E-mail</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Telefone: activate to sort column ascending">Telefone</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Ativo: activate to sort column ascending">Ativo</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Administrador: activate to sort column ascending">Administrador</th>
+                              aria-label="Sobre Nome: activate to sort column ascending">Descrição</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                               aria-label="Editar: activate to sort column ascending">Editar</th>
                           </tr>
@@ -194,50 +184,18 @@
                     <div class="box-body">
                       <form role="form-horizontal">
                         <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Nome: </label>
-                          <input type="text" id="firstName" maxlength="20" class="form-control">
+                          <label for="exampleInputEmail1">Número: </label>
+                          <input type="text" id="numero" maxlength="20" class="form-control">
                           <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Sobrenome: </label>
-                          <input type="text" id="lastName" maxlength="50" class="form-control">
+                          <label for="exampleInputEmail1">Descrição: </label>
+                          <input type="text" id="descricao" maxlength="50" class="form-control">
                           <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">E-mail: </label>
-                          <input type="email" id="email" maxlength="100" onblur="isValidEmailAddress()" class="form-control">
-                          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">CPF: </label>
-                          <input type="text" id="cpf" maxlength="14" class="form-control">
-                          <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Telefone: </label>
-                          <input type="text" id="phone" maxlength="13" class="form-control">
-                          <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Senha: </label>
-                          <input type="password" maxlength="15" id="password" class="form-control">
-                          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Confirmação de senha: </label>
-                          <input type="password" maxlength="15" onblur="isEqualPassword()" id="passwordConfirm" class="form-control">
-                          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Nível de usuário: </label>
-                          <select id="adm" class="form-control">
-                            <option value="false">Cliente</option>
-                            <option value="true">Administrador</option>
-                          </select>
                         </div>
                         <div class="text-center">
-                          <button type="button" onclick="registerByAdm()" class="btn btn-primary btn-flat">Cadastrar</button>
-                          <a class="btn btn-primary btn-flat" href="./manageUser.html">Cancelar</a>
+                          <button type="button" onclick="registerFieldByAdm()" class="btn btn-primary btn-flat">Cadastrar</button>
+                          <a class="btn btn-primary btn-flat" href="./manageField.html">Cancelar</a>
                         </div>
                       </form>
                     </div>
@@ -253,52 +211,18 @@
                   <div class="box-body">
                     <form role="form-horizontal">
                       <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Nome: </label>
-                        <input type="text" id="firstNameUp" value="" maxlength="20" class="form-control">
+                        <label for="exampleInputEmail1">Número: </label>
+                        <input type="text" id="numeroUp" value="" maxlength="20" class="form-control">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                       </div>
                       <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Sobrenome: </label>
-                        <input type="text" id="lastNameUp" maxlength="50" class="form-control">
+                        <label for="exampleInputEmail1">Descrição: </label>
+                        <input type="text" id="descricaoUp" maxlength="50" class="form-control">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">E-mail: </label>
-                        <input type="email" id="emailUp" readonly maxlength="100" class="form-control">
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">CPF: </label>
-                        <input type="text" id="cpfUp" maxlength="14" readonly class="form-control">
-                        <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Telefone: </label>
-                        <input type="text" id="phoneUp" maxlength="13" class="form-control">
-                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Nova Senha: </label>
-                        <input type="text" id="passwordUp" maxlength="13" class="form-control" placeholder="Deixe em branco caso não vá alterar a senha">
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Nível de usuário: </label>
-                        <select id="admUp" class="form-control">
-                          <option value="false">Cliente</option>
-                          <option value="true">Administrador</option>
-                        </select>
-                      </div>
-                      <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Status do usuário: </label>
-                        <select id="activeUp" class="form-control">
-                          <option value="false">Inativo</option>
-                          <option value="true">Ativo</option>
-                        </select>
                       </div>
                       <div class="text-center">
-                        <button type="button" onclick="updateUser()" class="btn btn-primary btn-flat">Salvar</button>
-                        <a class="btn btn-primary btn-flat" href="./manageUser.html">Cancelar</a>
+                        <button type="button" onclick="updateField()" class="btn btn-primary btn-flat">Salvar</button>
+                        <a class="btn btn-primary btn-flat" href="./manageField.html">Cancelar</a>
                       </div>
                     </form>
                   </div>
@@ -333,14 +257,11 @@
   <!-- ./wrapper -->
   <script>
     $(document).ready(function () {
-      $("#cpf").mask('000.000.000-00', { reverse: true });
-      $("#phone").mask('(00)000000000');
-      $("#cpfUp").mask('000.000.000-00', { reverse: true });
-      $("#phoneUp").mask('(00)000000000');
+      $("#numero").mask('00000000000');
     });
     $(document).ready(function () {
       $('.sidebar-menu').tree();
-      if (!loggedUserLevel) {
+      if (loggedUserLevel == "false" || !loggedUserLevel ) {
         $("#ferramentasAdm").remove();
       } else {
         $("#ferramentasAdm").removeClass("hidden");
@@ -352,7 +273,7 @@
       $("#fieldTableCreate").removeClass("hidden");
       $(".listed").remove();
     };
-    function showUpdateUser(userEmail) {
+    function showUpdateField(fieldNumber) {
       $('#fieldManageButtonCreate').prop("disabled", true)
       $('#fieldManageButtonList').prop("disabled", true)
 
@@ -360,7 +281,9 @@
       $("#fieldTableUpdate").removeClass("hidden");
       $(".listed").remove();
 
-      findFieldForUpdate(userEmail);
+      $("#numeroUp").mask('00000000000');
+
+      findFieldForUpdate(fieldNumber);
     };
   </script>
 </body>
