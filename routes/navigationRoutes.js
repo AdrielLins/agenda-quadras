@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 //check if user is already logged in while goin to home page with post method
 router.post('/home.html', (req, res, next) => {
+    console.log(req.session)
     if (req.session.user && req.cookies.user_sid) {
         res.redirect('./home.html');
         next();
@@ -33,19 +34,19 @@ router.get('/home.html', (req, res, next) => {
 
 //check if user is already logged in while goin to manageUser
 router.get('/manageUser.html', (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
+    if (req.session.user && req.cookies.user_sid && req.session.adm) {
         next();
     } else {
-        res.redirect('./login.html');
+        res.redirect('./home.html');
     }
 });
 
 //check if user is already logged in while goin to manageUser
 router.get('/manageField.html', (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
+    if (req.session.user && req.cookies.user_sid && req.session.adm) {
         next();
     } else {
-        res.redirect('./login.html');
+        res.redirect('./home.html');
     }
 });
 

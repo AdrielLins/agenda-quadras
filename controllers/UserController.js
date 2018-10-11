@@ -148,6 +148,7 @@ exports.loginUser = function (req, res) {
             res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
         } else {
             req.session.user = doc.email;
+            req.session.adm = doc.adm;
             res.send(doc);
             return;
         }
