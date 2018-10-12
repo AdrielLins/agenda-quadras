@@ -33,7 +33,7 @@ function validateUpdateSports() {
         alertify.alert('Atenção!', 'Favor preencha o campo "Modalidade".');
         return false;
     }
-    
+
     ajaxData = {};
 
     ajaxData['_id'] = _id;

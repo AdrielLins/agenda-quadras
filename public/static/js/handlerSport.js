@@ -76,7 +76,7 @@ function findSportForUpdate(sportUpdate) {
                 var _id = ajaxData['_id'];
                 var valor = ajaxData['valor'];
                 var modalidade = ajaxData['modalidade'];
-                
+
                 $('#sport_IdUp').val(_id);
                 $('#valorUp').val(valor);
                 $('#modalidadeUp').val(modalidade);

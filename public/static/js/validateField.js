@@ -32,7 +32,7 @@ function validateUpdateFields() {
         alertify.alert('Atenção!', 'Favor preencha o campo "Descrição".');
         return false;
     }
-    
+
     ajaxData = {};
 
     ajaxData['numero'] = numero;

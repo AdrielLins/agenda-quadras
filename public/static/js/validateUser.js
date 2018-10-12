@@ -105,7 +105,7 @@ function validateUpdateFields() {
         alertify.alert('Atenção!', 'Favor selecione o status do usuário.');
         return false;
     }
-    
+
     ajaxData = {};
 
     ajaxData['firstName'] = firstName;

@@ -92,7 +92,7 @@ exports.UpdateUser = async function (req, res) {
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
         } else {
-            if( req.body.password == ''){
+            if (req.body.password == '') {
                 //only changes password if it comes in the request
                 updatePassword = doc.password;
             }
@@ -101,7 +101,7 @@ exports.UpdateUser = async function (req, res) {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     phone: req.body.phone,
-                    password:updatePassword,
+                    password: updatePassword,
                     active: req.body.active,
                     adm: req.body.adm
                 },

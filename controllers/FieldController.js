@@ -19,7 +19,7 @@ exports.CreateField = function (req, res, next) {
             newField.save(function (err) {
                 if (err) {
                     return err;
-                }               
+                }
                 res.status(statusCode.CREATED).send('Quadra criada com sucesso!')
                 return;
             })

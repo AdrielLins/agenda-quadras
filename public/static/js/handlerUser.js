@@ -48,7 +48,7 @@ function login() {
         alertify.alert('Atenção!', 'Favor preencha o campo "Senha".');
         return
     }
-    
+
     if (!emailValid) {
         alertify.alert('Atenção!', 'Por favor, insira um e-mail válido.');
         return
@@ -66,7 +66,7 @@ function login() {
             alertify.alert('Atenção!', 'E-mail ou senha incorretos.');
             return
         } else {
-            if(!res.active){
+            if (!res.active) {
                 alertify.alert('Atenção!', 'Este usuário está inativo, favor entrar em contato com um administrador.');
                 return
             }
@@ -190,7 +190,7 @@ function findUserForUpdate(userEmail) {
                 $('#cpfUp').val(cpf);
                 $('#phoneUp').val(phone);
                 $('#activeUp').val(active);
-                $('#admUp').val(adm);             
+                $('#admUp').val(adm);
 
             }
 
@@ -201,7 +201,7 @@ function findUserForUpdate(userEmail) {
 function updateUser() {
     if (!validateUpdateFields()) {
         return
-    }    
+    }
     $.ajax({
         type: "POST", url: "/api/users/update/",
         data: ajaxData

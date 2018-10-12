@@ -19,7 +19,7 @@ exports.CreateSport = function (req, res, next) {
             newSport.save(function (err) {
                 if (err) {
                     return err;
-                }               
+                }
                 res.status(statusCode.CREATED).send('Esporte criado com sucesso!')
                 return;
             })

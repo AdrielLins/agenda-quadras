@@ -147,7 +147,7 @@
                 <button type="button" id="fieldManageButtonList" onclick="listField()" class="btn btn-primary btn-flat">Listagem
                   e edição</button>
               </div>
-              <!-- user-list -->
+              <!-- list -->
               <!-- /.box-header -->
               <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -176,8 +176,8 @@
                   </div>
                 </div>
               </div>
-              <!-- /user-list -->
-              <!-- user-create -->
+              <!-- /list -->
+              <!-- create -->
               <div class="box-body">
                 <div class="row">
                   <div id="fieldTableCreate" class="hidden">
@@ -202,8 +202,8 @@
                   </div>
                 </div>
               </div>
-              <!-- /user-create -->
-              <!-- user-update -->
+              <!-- /create -->
+              <!-- update -->
               <div class="box-body">
                 <div class="row">
                   <div id="fieldTableUpdate" class="hidden">
@@ -215,25 +215,25 @@
                           <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">
-                        <label for="exampleInputEmail1">Descrição: </label>
-                        <input type="text" id="descricaoUp" maxlength="50" class="form-control">
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                      </div>
-                      <div class="text-center">
-                        <button type="button" onclick="updateField()" class="btn btn-primary btn-flat">Salvar</button>
-                        <a class="btn btn-primary btn-flat" href="./manageField.html">Cancelar</a>
-                      </div>
-                    </form>
+                          <label for="exampleInputEmail1">Descrição: </label>
+                          <input type="text" id="descricaoUp" maxlength="50" class="form-control">
+                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        </div>
+                        <div class="text-center">
+                          <button type="button" onclick="updateField()" class="btn btn-primary btn-flat">Salvar</button>
+                          <a class="btn btn-primary btn-flat" href="./manageField.html">Cancelar</a>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- /.update -->
           </div>
-          <!-- /.user-update -->
-        </div>
       </div>
-        <!-- /.box-body -->
-      </div>
+      <!-- /.box-body -->
+    </div>
     <!-- /.box -->
   </div>
   <!-- /.box -->
@@ -261,7 +261,7 @@
     });
     $(document).ready(function () {
       $('.sidebar-menu').tree();
-      if (loggedUserLevel == "false" || !loggedUserLevel ) {
+      if (loggedUserLevel == "false" || !loggedUserLevel) {
         $("#ferramentasAdm").remove();
       } else {
         $("#ferramentasAdm").removeClass("hidden");
