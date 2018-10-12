@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 
 //check if user is already logged in while goin to home page with post method
 router.post('/home.html', (req, res, next) => {
-    console.log(req.session)
     if (req.session.user && req.cookies.user_sid) {
         res.redirect('./home.html');
         next();
