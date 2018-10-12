@@ -28,7 +28,7 @@ exports.CreateSport = function (req, res, next) {
 }
 
 exports.ReadSport = function (req, res) {
-    Sport.findOne({ modalidade: req.body.modalidade }).exec(function (err, doc) {
+    Sport.findById({ _id: req.body._id }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
@@ -59,8 +59,8 @@ exports.ListSport = function (req, res) {
 };
 
 exports.UpdateSport = function (req, res) {
-    var sportToUpdate = req.body.modalidade
-    Sport.findOne({ modalidade: sportToUpdate }).exec(function (err, doc) {
+    var sportToUpdate = req.body._id
+    Sport.findById({ _id: sportToUpdate }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
@@ -68,16 +68,17 @@ exports.UpdateSport = function (req, res) {
         if (!doc) {
             res.status(statusCode.NO_CONTENT).send('Esporte não encontrado!');
         } else {
-            Sport.findOneAndUpdate({ modalidade: sportToUpdate },
+            Sport.findByIdAndUpdate({ _id: sportToUpdate },
                 {
-                    valor: req.body.valor
+                    valor: req.body.valor,
+                    modalidade: req.body.modalidade
                 },
                 { new: true }, function (err, doc) {
                     if (err) {
                         res.send(doc);
                         return;
                     } else {
-                        res.send('Valor do esporte atualizado!');
+                        res.send('Esporte atualizado!');
                     }
                 });
         }

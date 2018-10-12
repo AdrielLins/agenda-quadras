@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AgendaQuadras | Home</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="/script/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/script/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="/script/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="/script/bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- jQuery 3 -->
+  <script src="script/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="script/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="script/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="script/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="script/dist/js/adminlte.min.js"></script>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/script/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="/script/dist/css/skins/_all-skins.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- My Scripts -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+  <script type="text/javascript" src="./static/js/validateSport.js"></script>
+  <script type="text/javascript" src="./static/js/handlerSport.js"></script>
+  <script src="./static/plugins/alertifyjs/alertify.js"></script>
+  <!-- My CSSs -->
+  <script type="text/javascript">
+    var listCount = 0
+    var loggedUser = localStorage.getItem('loggedUserName');
+    var loggedUserLevel = localStorage.getItem('loggedUserNameLvl');
+  </script>
+  <link rel="stylesheet" href="./static/plugins/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" href="./static/plugins/alertifyjs/css/themes/default.css">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="./home.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>A</b>Q</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Agenda</b>Quadras</span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li>
+              <a onclick="localStorage.clear()" href="/logout" id="logout" class="glyphicon glyphicon-off"> Sair</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div id="#userNameDiv" class="user-panel" style="color:white">
+          <h2>Olá
+            <script type="text/javascript">document.write(loggedUser)</script>!</h2>
+        </div>
+        <!-- search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+          <li>
+            <a href="script/pages/calendar.html">
+              <i class="fa fa-calendar"></i> <span>Calendar</span>
+              <span class="pull-right-container">
+              </span>
+            </a>
+          </li>
+          <li class="treeview active hidden" id="ferramentasAdm">
+            <a href="#">
+              <i class="fa fa-gears"></i> <span>Administração</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="manageUser.html"><i class="fa fa-folder"></i> Usuários</a></li>
+              <li><a href="manageAgenda.html"><i class="fa fa-folder"></i> Horários</a></li>
+              <li><a href="manageMatch.html"><i class="fa fa-folder"></i> Disputas</a></li>
+              <li><a href="manageField.html"><i class="fa fa-folder"></i> Quadras</a></li>
+              <li><a href="#"><i class="fa fa-folder"></i> Esportes</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <div class="row">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Manutenção de Esportes
+            <small></small>
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+          <!-- Default box -->
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <button type="button" id="sportManageButtonCreate" href="#" onclick="showCreateSport()" class="btn btn-primary btn-flat">Criar
+                  novo
+                  Esporte</button>
+                <button type="button" id="sportManageButtonList" onclick="listSport()" class="btn btn-primary btn-flat">Listagem
+                  e edição</button>
+              </div>
+              <!-- user-list -->
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                  <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <table id="sportTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
+                        aria-describedby="example2_info">
+                        <thead>
+                          <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-sort="ascending" aria-label="Nome engine: activate to sort column descending">Valor</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Modalidade</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Editar: activate to sort column ascending">Editar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /user-list -->
+              <!-- user-create -->
+              <div class="box-body">
+                <div class="row">
+                  <div id="sportTableCreate" class="hidden">
+                    <div class="box-body">
+                      <form role="form-horizontal">
+                        <div class="form-group has-feedback">
+                          <label for="exampleInputEmail1">Valor: </label>
+                          <input type="number" min="0.00" max="10000.00" step="0.01" id="valor" maxlength="20" class="form-control">
+                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                          <label for="exampleInputEmail1">Modalidade: </label>
+                          <input type="text" id="modalidade" maxlength="50" class="form-control">
+                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        </div>
+                        <div class="text-center">
+                          <button type="button" onclick="registerSportByAdm()" class="btn btn-primary btn-flat">Cadastrar</button>
+                          <a class="btn btn-primary btn-flat" href="./manageSport.html">Cancelar</a>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /user-create -->
+              <!-- user-update -->
+              <div class="box-body">
+                <div class="row">
+                  <div id="sportTableUpdate" class="hidden">
+                    <div class="box-body">
+                      <form role="form-horizontal">
+                        <div class="form-group has-feedback">                        
+                          <label for="exampleInputEmail1">Valor: </label>
+                          <input type="number" min="0.00" max="10000.00" step="0.01" id="valorUp" value="" maxlength="20" class="form-control">
+                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                      </div>
+                      <div class="form-group has-feedback">
+                        <label for="exampleInputEmail1">Modalidade: </label>
+                        <input type="text" id="modalidadeUp" maxlength="50" class="form-control">
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                      </div>
+                      <div class="text-center">
+                        <button type="button" onclick="updateSport()" class="btn btn-primary btn-flat">Salvar</button>
+                        <a class="btn btn-primary btn-flat" href="./manageSport.html">Cancelar</a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.user-update -->
+        </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.box -->
+
+  </section>
+  </div>
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2018 - Adriel Lins Maciel.</strong>
+  </footer>
+
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
+  <script>
+    $(document).ready(function () {
+    //  $("#valor").mask('00000000000');
+    });
+    $(document).ready(function () {
+      $('.sidebar-menu').tree();
+      if (loggedUserLevel == "false" || !loggedUserLevel ) {
+        $("#ferramentasAdm").remove();
+      } else {
+        $("#ferramentasAdm").removeClass("hidden");
+      }
+    })
+    function showCreateSport() {
+      $("#sportTableList").addClass("hidden").removeClass("tableListed");
+
+      $("#sportTableCreate").removeClass("hidden");
+      $(".listed").remove();
+    };
+    function showUpdateSport(sportModalidade) {
+      $('#sportManageButtonCreate').prop("disabled", true)
+      $('#sportManageButtonList').prop("disabled", true)
+
+      $("#sportTableList").addClass("hidden").removeClass("tableListed");
+      $("#sportTableUpdate").removeClass("hidden");
+      $(".listed").remove();
+
+      //$("#valorUp").mask('00000000000');
+
+      findSportForUpdate(sportModalidade);
+    };
+  </script>
+</body>
+
+</html>
