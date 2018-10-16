@@ -126,29 +126,21 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <div class="row">
-        <!-- Content Header (Page header) -->
-        <section class="content-header text-center">
-          <h1>
-            Manutenção de Usuários
-            <small></small>
-          </h1>
-        </section>
-
-        <!-- Main content -->
         <section class="content">
-
-          <!-- Default box -->
           <div class="col-xs-12">
             <div class="box">
-              <div class="box-header text-center">
+              <section class="box-header with-border">
+                <h1>Manutenção de Usuários</h1>
+              </section>
+              <!-- user-list -->
+              <!-- /.box-header -->
+              <div class="box-header with-border">
                 <button type="button" id="userManageButtonCreate" href="#" onclick="showCreateUser()" class="btn btn-primary btn-flat">Criar
                   novo
                   usuário</button>
                 <button type="button" id="userManageButtonList" onclick="listUser()" class="btn btn-primary btn-flat">Listagem
                   e edição</button>
               </div>
-              <!-- user-list -->
-              <!-- /.box-header -->
               <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                   <div class="row">
@@ -156,7 +148,7 @@
                     <div class="col-sm-6"></div>
                   </div>
                   <div class="row">
-                    <div class="box-body table-responsive no-padding">
+                    <div class="box-body table-responsive no-margin">
                       <table id="userTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
                         aria-describedby="example2_info">
                         <thead>
