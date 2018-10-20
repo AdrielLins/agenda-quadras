@@ -48,6 +48,7 @@ app.use('/script', express.static(__dirname + '/node_modules/admin-lte/'));
 app.use('/api/users', require('./routes/UserRoute'));
 app.use('/api/fields', require('./routes/FieldRoute'));
 app.use('/api/sports', require('./routes/SportRoute'));
+app.use('/api/agendas', require('./routes/AgendaRoute'));
 
 // Initialize routes for user navigation
 app.use('/', require('./routes/navigationRoutes'));
