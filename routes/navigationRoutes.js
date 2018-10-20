@@ -31,7 +31,7 @@ router.get('/home.html', (req, res, next) => {
     }
 });
 
-//check if user is already logged in while goin to manageUser
+//check if user is an administrator while goin to manageUser
 router.get('/manageUser.html', (req, res, next) => {
     if (req.session.user && req.cookies.user_sid && req.session.adm) {
         next();
@@ -40,8 +40,26 @@ router.get('/manageUser.html', (req, res, next) => {
     }
 });
 
-//check if user is already logged in while goin to manageUser
+//check if user is an administrator while goin to manageField
 router.get('/manageField.html', (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid && req.session.adm) {
+        next();
+    } else {
+        res.redirect('./home.html');
+    }
+});
+
+//check if user is an administrator while goin to manageSport
+router.get('/manageSport.html', (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid && req.session.adm) {
+        next();
+    } else {
+        res.redirect('./home.html');
+    }
+});
+
+//check if user is an administrator while goin to manageAgenda
+router.get('/manageAgenda.html', (req, res, next) => {
     if (req.session.user && req.cookies.user_sid && req.session.adm) {
         next();
     } else {
