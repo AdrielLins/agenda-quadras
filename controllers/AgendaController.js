@@ -20,8 +20,6 @@ exports.CreateAgenda = function (req, res, next) {
             res.send(err);
             return;
         }
-        console.log("req.body.userEmail ")
-        console.log(req.body.userEmail)
         if (doc) {
             res.status(statusCode.NO_CONTENT).send('Horário nesta quadra já existe!');
             return

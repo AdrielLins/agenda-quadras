@@ -1,10 +1,11 @@
+//listar todos os horários
 function listAgenda() {
     if (!$("#agendaTableList").hasClass("tableListed") && localStorage.loggedUserNameLvl == "true") {
         $.ajax({
             type: "POST", url: "/api/agendas/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -16,7 +17,7 @@ function listAgenda() {
                 for (var i = 0; i < len; i++) {
 
                     var id = ajaxData[i]._id;
-                    var dateAgenda = ajaxData[i].dateAgenda;
+                    var dateAgendaCombined = ajaxData[i].dateAgenda;
                     var quadraNumero = ajaxData[i].quadraNumero;
                     var esporteValor = ajaxData[i].esporteValor;
                     var esporteModalidade = ajaxData[i].esporteModalidade;
@@ -26,9 +27,24 @@ function listAgenda() {
                     buttonModalidade = "'" + id + "'";
                     var editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonModalidade + ')" class="btn btn-primary btn-flat">Editar</button>';
 
+                    dateAgendaSplited = dateAgendaCombined.split("T");
+
+                    var agendaDay = "<input type='date' disabled value='" + dateAgendaSplited[0] + "'>";
+                    var agendaHour = "<input type='text' disabled value='" + dateAgendaSplited[1] + "'>";
+
+
+
+                    if (userEmail == undefined) {
+                        userEmail = "Sem usuário vinculado"
+                    }
+                    if (resultado == undefined) {
+                        resultado = "Sem resultado disponível"
+                    }
+
                     $("#agendaTableList").append(
                         "<tr class='listed'>" +
-                        "<td> " + dateAgenda + "</td>" +
+                        "<td> " + agendaDay + "</td>" +
+                        "<td> " + agendaHour + "</td>" +
                         "<td> " + quadraNumero + "</td>" +
                         "<td>R$ " + esporteValor + "</td>" +
                         "<td> " + esporteModalidade + "</td>" +
@@ -39,15 +55,41 @@ function listAgenda() {
                         "</tr>");
 
                 }
+
             }
 
         })
     }
 }
 
+
 function registerAgendaByAdm() {
-    if (!validateRegisterAgendas()) {
-        return
+
+    //get form values
+    var combinedSport = $('#esporteModalidade').val();
+    var dayAgenda = $('#dayAgenda').val();
+    var hourAgenda = $('#hourAgenda').val();
+    var quadraNumero = $('#quadraNumero').val();
+    var status = $('#status').val();
+    var userEmail = $('#userEmail').val();
+
+    //transform hour and date on ISODate
+    var dateAgenda = dayAgenda + hourAgenda
+
+    //split combinedSports into an array to get valor and modalidade separated      
+    var sportSplited = combinedSport.split("-");
+
+    //prepare data to send by ajax
+    ajaxData = {};
+    ajaxData['dateAgenda'] = dateAgenda;
+    ajaxData['hourAgenda'] = hourAgenda;
+    ajaxData['esporteModalidade'] = sportSplited[0];
+    ajaxData['esporteValor'] = sportSplited[1];
+    ajaxData['quadraNumero'] = quadraNumero;
+    ajaxData['status'] = status;
+
+    if (userEmail) {
+        ajaxData['userEmail'] = userEmail;
     }
 
     $.ajax({
@@ -66,8 +108,9 @@ function registerAgendaByAdm() {
     });
 
 }
-
+//update de um horário
 function findAgendaForUpdate(agendaUpdate) {
+    $('#registerByAdm').prop("disabled", true)
     if (localStorage.loggedUserNameLvl == "true") {
         ajaxData = {};
         ajaxData['_id'] = agendaUpdate;
@@ -77,7 +120,7 @@ function findAgendaForUpdate(agendaUpdate) {
             data: ajaxData
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -104,9 +147,10 @@ function findAgendaForUpdate(agendaUpdate) {
             }
 
         })
+        $('#registerByAdm').prop("disabled", false)
     }
 }
-
+//atualizar horários existentes
 function updateAgenda() {
     if (!validateUpdateAgendas()) {
         return
@@ -127,7 +171,7 @@ function updateAgenda() {
     });
 
 }
-
+//criar novos horários
 function listFieldsToCreateAgenda() {
     if (localStorage.loggedUserNameLvl == "true") {
         //popular campo de quadras
@@ -135,7 +179,7 @@ function listFieldsToCreateAgenda() {
             type: "POST", url: "/api/fields/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -152,12 +196,12 @@ function listFieldsToCreateAgenda() {
 
         })
 
-        //popular campo de modalidades
+        //popular campo de esportes
         $.ajax({
             type: "POST", url: "/api/sports/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -168,8 +212,8 @@ function listFieldsToCreateAgenda() {
                     var _id = ajaxData[i]._id;
                     var modalidade = ajaxData[i].modalidade;
                     var valor = ajaxData[i].valor;
-
-                    $("#esporteModalidade").append("<option value='" + _id + "'>" + modalidade + " - R$: " + valor + "</option>");
+                    var combinedSport = modalidade + '-' + valor
+                    $("#esporteModalidade").append("<option value='" + combinedSport + "'>" + modalidade + " - R$: " + valor + "</option>");
 
                 }
             }
@@ -181,7 +225,7 @@ function listFieldsToCreateAgenda() {
             type: "POST", url: "/api/users/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -192,7 +236,7 @@ function listFieldsToCreateAgenda() {
                     var _id = ajaxData[i]._id;
                     var email = ajaxData[i].email;
 
-                    $("#userEmail").append("<option value='" + _id + "'>" + email + "</option>");
+                    $("#userEmail").append("<option value='" + email + "'>" + email + "</option>");
 
                 }
             }
