@@ -87,7 +87,7 @@ function listUser() {
             type: "POST", url: "/api/users/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -161,7 +161,7 @@ function registerByAdm() {
             alertify.alert('Atenção!', 'E-mail ou Cpf já estão sendo usados!');
             return
         } else {
-            alertify.alert('Usuário criado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
+            alertify.alert('Atenção!','Usuário criado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -180,7 +180,7 @@ function findUserForUpdate(userEmail) {
             data: ajaxData
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -221,7 +221,7 @@ function updateUser() {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Usuário atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
+            alertify.alert('Atenção!','Usuário atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');

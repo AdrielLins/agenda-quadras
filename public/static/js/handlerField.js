@@ -4,7 +4,7 @@ function listField() {
             type: "POST", url: "/api/fields/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -47,7 +47,7 @@ function registerFieldByAdm() {
             alertify.alert('Atenção!', 'Este número já está sendo usado!');
             return
         } else {
-            alertify.alert('Quadra criada com sucesso!', function () { alertify.success(window.location.href = "./manageField.html"); });
+            alertify.alert('Atenção!','Quadra criada com sucesso!', function () { alertify.success(window.location.href = "./manageField.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -96,7 +96,7 @@ function updateField() {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Quadra atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageField.html"); });
+            alertify.alert('Atenção!','Quadra atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageField.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
