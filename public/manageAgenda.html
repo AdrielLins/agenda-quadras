@@ -170,7 +170,7 @@
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                               aria-label="Sobre Nome: activate to sort column ascending">Status</th>
                             <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                            aria-sort="ascending" aria-label="Sobre Nome: activate to sort column ascending">Resultado</th>
+                              aria-sort="ascending" aria-label="Sobre Nome: activate to sort column ascending">Resultado</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                               aria-label="Sobre Nome: activate to sort column ascending">Cliente</th>
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
@@ -193,7 +193,7 @@
                       <form role="form-horizontal">
                         <div class="form-group has-feedback">
                           <label for="exampleInputEmail1">Dia: </label>
-                          <input type="date" id="dayAgenda" min="2010-01-01" value="2018-12-20">
+                          <input type="date" id="dayAgenda" min="2010-01-01" onblur="todayDate(this.value)" value="2018-12-20">
                           <span class="fa fa-calendar form-control-feedback"></span>
                           <label for="exampleInputEmail1">Hora: </label>
                           <select id="hourAgenda">
@@ -270,42 +270,70 @@
                     <div class="box-body">
                       <form role="form-horizontal">
                         <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Data: </label>
-                          <input type="text" id="dateAgendaUp" maxlength="50" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                          <input style="display:none" id="agendaForUpdate" value="">
+                          <label for="exampleInputEmail1" >Dia: </label>
+                          <input type="date" id="dayAgendaUp" min="2010-01-01" onblur="todayDate(this.value)" value="2018-12-20">
+                          <span class="fa fa-calendar form-control-feedback"></span>
+                          <label for="exampleInputEmail1">Hora: </label>
+                          <select id="hourAgendaUp">
+                            <option value="T00:00">00:00 - 01:00</option>
+                            <option value="T01:00">01:00 - 02:00</option>
+                            <option value="T02:00">02:00 - 03:00</option>
+                            <option value="T03:00">03:00 - 04:00</option>
+                            <option value="T04:00">04:00 - 05:00</option>
+                            <option value="T05:00">05:00 - 06:00</option>
+                            <option value="T06:00">06:00 - 07:00</option>
+                            <option value="T07:00">07:00 - 08:00</option>
+                            <option value="T08:00">08:00 - 09:00</option>
+                            <option value="T09:00">09:00 - 10:00</option>
+                            <option value="T10:00">10:00 - 11:00</option>
+                            <option value="T11:00">11:00 - 12:00</option>
+                            <option value="T12:00">12:00 - 13:00</option>
+                            <option value="T13:00">13:00 - 14:00</option>
+                            <option value="T14:00">14:00 - 15:00</option>
+                            <option value="T15:00">15:00 - 16:00</option>
+                            <option value="T16:00">16:00 - 17:00</option>
+                            <option value="T17:00">17:00 - 18:00</option>
+                            <option value="T18:00">18:00 - 19:00</option>
+                            <option value="T19:00">19:00 - 20:00</option>
+                            <option value="T20:00">20:00 - 21:00</option>
+                            <option value="T21:00">21:00 - 22:00</option>
+                            <option value="T22:00">22:00 - 23:00</option>
+                            <option value="T23:00">23:00 - 00:00</option>
+                          </select>
                         </div>
                         <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Número da Quadra: </label>
-                          <input type="text" id="quadraNumeroUp" maxlength="50" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                          <label for="exampleInputEmail1">Número da quadra e Descrição: </label>
+                          <select id="quadraNumeroUp" class="form-control">
+                          </select>
                         </div>
                         <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Valor: </label>
-                          <input type="text" id="esporteValorUp" maxlength="50" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Modalidade: </label>
-                          <input type="text" id="esporteModalidadeUp" maxlength="50" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                          <label for="exampleInputEmail1">Modalidade esportiva e Valor: </label>
+                          <select id="esporteModalidadeUp" class="form-control">
+                          </select>
                         </div>
                         <div class="form-group has-feedback">
                           <label for="exampleInputEmail1">Status: </label>
-                          <input type="text" id="statusUp" maxlength="50" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                          <select id="statusUp" class="form-control">
+                            <option value="Disponível">Disponível</option>
+                            <option value="Agendado">Agendado</option>
+                            <option value="Pago">Pago</option>
+                            <option value="Cancelado">Cancelado</option>
+                          </select>
                         </div>
                         <div class="form-group has-feedback">
                           <label for="exampleInputEmail1">Cliente: </label>
-                          <input type="text" id="userEmailUp" maxlength="50" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                          <select id="userEmailUp" class="form-control">
+                            <option value="">Livre</option>
+                          </select>
                         </div>
                         <div class="form-group has-feedback">
                           <label for="exampleInputEmail1">Resultado: </label>
-                          <input type="text" id="resultadoUp" maxlength="50" class="form-control">
+                          <input type="text" id="resultadoUp" maxlength="50" value="" class="form-control">
                           <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         </div>
                         <div class="text-center">
-                          <button type="button" onclick="updateAgenda()" class="btn btn-primary btn-flat">Salvar</button>
+                          <button type="button" id="updateAgendaByAdm" onclick="updateAgenda()" class="btn btn-primary btn-flat">Salvar</button>
                           <a class="btn btn-primary btn-flat" href="./manageAgenda.html">Cancelar</a>
                         </div>
                       </form>
@@ -358,6 +386,7 @@
       $("#agendaTableCreate").removeClass("hidden");
       listFieldsToCreateAgenda()
       $(".listed").remove();
+      $("#dayAgenda").blur();
     };
     function showUpdateAgenda(agendaId) {
       $('#agendaManageButtonCreate').prop("disabled", true)
@@ -365,10 +394,9 @@
 
       $("#agendaTableList").addClass("hidden").removeClass("tableListed");
       $("#agendaTableUpdate").removeClass("hidden");
-      $(".listed").remove();
-
-      //$("#valorUp").mask('00000000000');
-
+      $(".listed").remove();     
+      
+      $('#agendaForUpdate').val(agendaId);
       findAgendaForUpdate(agendaId);
     };
   </script>
