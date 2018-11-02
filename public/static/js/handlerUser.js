@@ -108,6 +108,17 @@ function listUser() {
                     buttonEmail = "'" + email + "'";
                     var editButton = '<button type="button" onclick="showUpdateUser(' + buttonEmail + ')" class="btn btn-primary btn-flat">Editar</button>';
 
+                    if (active == true) {
+                        active = '<span class="fa fa-check" aria-hidden="true"></span>'
+                    } else {
+                        active = '<span class="fa fa-times" aria-hidden="true"></span>'
+                    }
+                    if (adm == true) {
+                        adm = '<span class="fa fa-check" aria-hidden="true"></span>'
+                    } else {
+                        adm = '<span class="fa fa-times" aria-hidden="true"></span>';
+                    }
+
                     $("#userTableList").append(
                         "<tr class='listed'>" +
                         "<td>" + name + "</td>" +
