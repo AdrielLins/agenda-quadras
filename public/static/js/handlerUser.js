@@ -161,7 +161,7 @@ function registerByAdm() {
             alertify.alert('Atenção!', 'E-mail ou Cpf já estão sendo usados!');
             return
         } else {
-            alertify.alert('Atenção!','Usuário criado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
+            alertify.alert('Atenção!', 'Usuário criado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -180,29 +180,27 @@ function findUserForUpdate(userEmail) {
             data: ajaxData
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
                 ajaxData = res;
 
-                var email = ajaxData['email'];
-                var name = ajaxData['firstName'];
-                var lastname = ajaxData['lastName'];
-                var cpf = ajaxData['cpf'];
-                var phone = ajaxData['phone'];
-                var password = ajaxData['password'];
-                var active = ajaxData['active'];
-                var adm = ajaxData['adm'];
-
-                $('#firstNameUp').val(name);
-                $('#lastNameUp').val(lastname);
-                $('#emailUp').val(email);
-                $('#cpfUp').val(cpf);
-                $('#phoneUp').val(phone);
-                $('#activeUp').val(active);
-                $('#admUp').val(adm);
-
+                if (!ajaxData['active']) {
+                    $('#activeUp').val("false");
+                } else {
+                    $('#activeUp').val("true");
+                }
+                if (!ajaxData['adm']) {
+                    $('#admUp').val("false");
+                } else {
+                    $('#admUp').val("true");
+                }
+                $('#firstNameUp').val(ajaxData['firstName']);
+                $('#lastNameUp').val(ajaxData['lastName']);
+                $('#emailUp').val(ajaxData['email']);
+                $('#cpfUp').val(ajaxData['cpf']);
+                $('#phoneUp').val(ajaxData['phone']);
             }
 
         })
@@ -221,7 +219,7 @@ function updateUser() {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Atenção!','Usuário atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
+            alertify.alert('Atenção!', 'Usuário atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');

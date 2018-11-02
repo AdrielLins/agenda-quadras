@@ -105,6 +105,10 @@ function validateUpdateFields() {
         alertify.alert('Atenção!', 'Favor selecione o status do usuário.');
         return false;
     }
+    if( password.length >= 1 && password.length < 6 ){
+        alertify.alert('Atenção!', 'A senha deve ter no mínimo seis caracteres!');
+        return false;
+    }
 
     ajaxData = {};
 
