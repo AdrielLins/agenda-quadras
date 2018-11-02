@@ -1,5 +1,3 @@
-var isDateValid = false;
-
 function todayDate(testDate) {
     var today = new Date();
     var dd = today.getDate();
@@ -17,10 +15,9 @@ function todayDate(testDate) {
     today = yyyy + '-' + mm + '-' + dd;
 
     if (testDate < today) {
-        alertify.error('Esta data não pode ser usada!');
+        return false
     } else {
-        isDateValid = true;
+        return true;
     }
-    return isDateValid
 
 }

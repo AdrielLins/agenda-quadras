@@ -1,5 +1,3 @@
-var isDateValid = false;
-
 //listar todos os horários
 function listAgenda() {
     if (!$("#agendaTableList").hasClass("tableListed") && localStorage.loggedUserNameLvl == "true") {
@@ -26,12 +24,18 @@ function listAgenda() {
                     var status = ajaxData[i].status;
                     var userEmail = ajaxData[i].userEmail;
                     var resultado = ajaxData[i].resultado;
-                    buttonAgendaId = "'" + id + "'";
-                    var editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Editar</button>';
-
+                    buttonAgendaId = "'" + id + "'";                    
+                    
                     dateAgendaSplited = dateAgendaCombined.split("T");
                     var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
-
+                    var editButton;
+                    
+                    if (!todayDate(dateAgendaSplited)) {
+                        editButton = "Horário encerrado"
+                    } else{
+                        editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Editar</button>';
+                    }
+                    
                     var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
                     var agendaHour = "<input type='time' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + "'>";
 
@@ -67,14 +71,14 @@ function listAgenda() {
 
 
 function registerAgendaByAdm() {
-
-    if (!isDateValid) {
+    var dayAgenda = $('#dayAgenda').val();
+    
+    if (!todayDate(dayAgenda)) {
         alertify.alert('Atenção!', 'Por favor, preencha uma data válida!');
         return
     }
     //get form values
     var combinedSport = $('#esporteModalidade').val();
-    var dayAgenda = $('#dayAgenda').val();
     var hourAgenda = $('#hourAgenda').val();
     var quadraNumero = $('#quadraNumero').val();
     var status = $('#status').val();
@@ -267,6 +271,10 @@ function populateFieldsForUpdate(agendaData) {
 }
 //atualizar horários existentes
 function updateAgenda(idAgenda) {
+    if (!todayDate($('#dayAgendaUp').val())) {
+        alertify.alert('Atenção!', 'Por favor, preencha uma data válida!');
+        return
+    }
     //get form values
     var combinedSport = $('#esporteModalidade').val();
     var dayAgenda = $('#dayAgendaUp').val();
@@ -284,7 +292,7 @@ function updateAgenda(idAgenda) {
 
     //prepare data to send by ajax
     ajaxData = {};
-    ajaxData['_id'] = idAgenda;
+    ajaxData['_id'] = $('#agendaForUpdate').val();
     ajaxData['dateAgenda'] = dateAgenda;
     ajaxData['esporteModalidade'] = sportSplited[0];
     ajaxData['esporteValor'] = sportSplited[1];
