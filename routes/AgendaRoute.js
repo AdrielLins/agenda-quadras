@@ -19,5 +19,9 @@ router.post('/delete/', agendaController.DeleteAgenda);
 router.post('/status/', agendaController.StatusAgenda);
 //alterar resultado da agenda
 router.post('/resultado/', agendaController.ResultadoAgenda);
+//usu�rio setar seu agendamento
+router.post('/setAgenda/', agendaController.UserSetAgenda);
+//listar agendamentos finalizados do usu�rios
+router.post('/listUserFinishedAgenda/', agendaController.ListUserFinishedAgenda);
 
 module.exports = router;

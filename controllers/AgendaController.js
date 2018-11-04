@@ -76,7 +76,7 @@ exports.UpdateAgenda = function (req, res) {
             return;
         }
         if (!doc) {
-            res.status(statusCode.NO_CONTENT).send('Eagendae não encontrado!');
+            res.status(statusCode.NO_CONTENT).send('Agenda não encontrado!');
         } else {
             Agenda.findByIdAndUpdate({ _id: agendaToUpdate },
                 {
@@ -168,7 +168,7 @@ exports.StatusAgenda = function (req, res) {
                         res.send(doc);
                         return;
                     } else {
-                        res.send('Horário Cancelado!');
+                        res.send('Status alterado!');
                     }
                 });
         }
@@ -195,6 +195,49 @@ exports.ResultadoAgenda = function (req, res) {
                         return;
                     } else {
                         res.send('Resultado Setado!');
+                    }
+                });
+        }
+    });
+};
+
+exports.ListUserFinishedAgenda = function (req, res) {
+    Agenda.find({ email: req.session.user, status:"Pago" }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('Agenda não encontrada!');
+        }
+        else {
+            res.send(doc);
+            return;
+        }
+    });
+};
+
+exports.UserSetAgenda = function (req, res) {
+    var agendaToUpdate = req.body._id
+    Agenda.findById({ _id: agendaToUpdate }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('Agenda não encontrado!');
+        } else {
+            Agenda.findByIdAndUpdate({ _id: agendaToUpdate },
+                {
+                    status: "Agendado",
+                    userEmail: req.session.user
+                },
+                { new: true }, function (err, doc) {
+                    if (err) {
+                        res.send(doc);
+                        return;
+                    } else {
+                        res.send('Agenda atualizada!');
                     }
                 });
         }
