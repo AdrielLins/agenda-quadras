@@ -277,6 +277,8 @@
 
       $("#sportTableCreate").removeClass("hidden");
       $(".listed").remove();
+      $('#sportManageButtonCreate').prop("disabled", true);
+      $('#sportManageButtonList').prop("disabled", false);
     };
     function showUpdateSport(sportModalidade) {
       $('#sportManageButtonCreate').prop("disabled", true)

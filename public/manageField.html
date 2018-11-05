@@ -273,6 +273,8 @@
 
       $("#fieldTableCreate").removeClass("hidden");
       $(".listed").remove();
+      $('#fieldManageButtonCreate').prop("disabled", true);
+      $('#fieldManageButtonList').prop("disabled", false);
     };
     function showUpdateField(fieldNumber) {
       $('#fieldManageButtonCreate').prop("disabled", true)

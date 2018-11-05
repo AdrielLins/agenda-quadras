@@ -394,6 +394,8 @@
       listFieldsToCreateAgenda()
       $(".listed").remove();
       $("#dayAgenda").blur();
+      $('#agendaManageButtonCreate').prop("disabled", true);
+      $('#agendaManageButtonList').prop("disabled", false);
     };
     function showUpdateAgenda(agendaId) {
       $('#agendaManageButtonCreate').prop("disabled", true)

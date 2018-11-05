@@ -11,6 +11,8 @@ function listField() {
                 ajaxData = res;
                 $("#fieldTableList").removeClass("hidden").addClass("tableListed");
                 $("#fieldTableCreate").addClass("hidden");
+                $('#fieldManageButtonCreate').prop("disabled", false);
+                $('#fieldManageButtonList').prop("disabled", true);
 
                 var len = ajaxData.length;
                 for (var i = 0; i < len; i++) {

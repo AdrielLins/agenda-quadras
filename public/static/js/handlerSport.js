@@ -11,6 +11,8 @@ function listSport() {
                 ajaxData = res;
                 $("#sportTableList").removeClass("hidden").addClass("tableListed");
                 $("#sportTableCreate").addClass("hidden");
+                $('#sportManageButtonCreate').prop("disabled", false);
+                $('#sportManageButtonList').prop("disabled", true);
 
                 var len = ajaxData.length;
                 for (var i = 0; i < len; i++) {

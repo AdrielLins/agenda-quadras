@@ -10,6 +10,8 @@ function listAvaliableAgenda() {
         } else {
             ajaxData = {};
             ajaxData = res;
+            $('#agendaManageButtonCreate').prop("disabled", true)
+            $('#agendaManageButtonList').prop("disabled", false)
             $("#listAgendas").removeClass("hidden").addClass("tableListed");
             $("#listUserAgendas").addClass("hidden");
 
@@ -74,6 +76,8 @@ function listFinishedAgenda() {
         } else {
             ajaxData = {};
             ajaxData = res;
+            $('#agendaManageButtonCreate').prop("disabled", false)
+            $('#agendaManageButtonList').prop("disabled", true)
             $("#listUserAgendas").removeClass("hidden").addClass("tableListed");
             $("#listAgendas").addClass("hidden");
 
@@ -132,7 +136,7 @@ function setAgendaForUser(agendaId) {
     ajaxData = {};
     ajaxData['_id'] = agendaId;
     $.ajax({
-        type: "POST", url: "/api/agendas/update/",
+        type: "POST", url: "/api/agendas/setAgenda/",
         data: ajaxData
     }).done(function (res) {
         if (!res) {

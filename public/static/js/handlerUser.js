@@ -92,6 +92,8 @@ function listUser() {
             } else {
                 ajaxData = {};
                 ajaxData = res;
+                $('#userManageButtonCreate').prop("disabled", false);
+                $('#userManageButtonList').prop("disabled", true);
                 $("#userTableList").removeClass("hidden").addClass("tableListed");
                 $("#userTableCreate").addClass("hidden");
 

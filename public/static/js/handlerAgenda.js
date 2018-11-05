@@ -12,6 +12,8 @@ function listAgenda() {
                 ajaxData = res;
                 $("#agendaTableList").removeClass("hidden").addClass("tableListed");
                 $("#agendaTableCreate").addClass("hidden");
+                $('#agendaManageButtonCreate').prop("disabled", false);
+                $('#agendaManageButtonList').prop("disabled", true);
 
                 var len = ajaxData.length;
                 for (var i = 0; i < len; i++) {

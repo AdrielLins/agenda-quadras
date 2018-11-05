@@ -349,6 +349,8 @@
 
       $("#userTableCreate").removeClass("hidden");
       $(".listed").remove();
+      $('#userManageButtonCreate').prop("disabled", true);
+      $('#userManageButtonList').prop("disabled", false);
     };
     function showUpdateUser(userEmail) {
       $('#userManageButtonCreate').prop("disabled", true)
