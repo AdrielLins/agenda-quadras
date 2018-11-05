@@ -66,7 +66,7 @@ function findFieldForUpdate(fieldNumber) {
             data: ajaxData
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};

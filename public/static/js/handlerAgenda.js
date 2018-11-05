@@ -314,7 +314,7 @@ function updateAgenda(idAgenda) {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Agenda atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageAgenda.html"); });
+            alertify.alert('Atenção!','Agenda atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageAgenda.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
