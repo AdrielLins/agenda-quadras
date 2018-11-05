@@ -137,14 +137,13 @@
                 <h1>Escolha uma das opções abaixo</h1>
               </section>
               <div class="box-header with-border">
-                <button type="button" id="agendaManageButtonCreate" href="#" onclick="listAvaliableAgenda()" 
-                class="btn btn-primary btn-flat">Ver horários disponíveis</button>
-                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" 
-                class="btn btn-primary btn-flat">Histórico de partidas</button>
+                <button type="button" id="agendaManageButtonCreate" href="#" onclick="listAvaliableAgenda()" class="btn btn-primary btn-flat">Ver
+                  horários disponíveis</button>
+                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" class="btn btn-primary btn-flat">Minhas partidas</button>
               </div>
-              <!-- list -->
+              <!-- list horarios para agendar-->
               <!-- /.box-header -->
-              <div class="box-body">
+              <div class="box-body hidden" id="listAgendas">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                   <div class="row">
                     <div class="col-sm-6"></div>
@@ -152,7 +151,7 @@
                   </div>
                   <div class="row">
                     <div class="box-body table-responsive no-no-margin">
-                      <table id="agendaTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
+                      <table id="agendaTableList" class="table table-bordered table-hover dataTable" role="grid"
                         aria-describedby="example2_info">
                         <thead>
                           <tr role="row">
@@ -176,173 +175,56 @@
                 </div>
               </div>
               <!-- /list -->
-              <!-- create -->
-              <div class="box-body">
-                <div class="row">
-                  <div id="agendaTableCreate" class="hidden">
-                    <div class="box-body">
-                      <form role="form-horizontal">
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Dia: </label>
-                          <input type="date" id="dayAgenda" min="2010-01-01" onblur="todayDate(this.value)" value="2018-12-20">
-                          <span class="fa fa-calendar form-control-feedback"></span>
-                          <label for="exampleInputEmail1">Hora: </label>
-                          <select id="hourAgenda">
-                            <option value="T00:00">00:00 - 01:00</option>
-                            <option value="T01:00">01:00 - 02:00</option>
-                            <option value="T02:00">02:00 - 03:00</option>
-                            <option value="T03:00">03:00 - 04:00</option>
-                            <option value="T04:00">04:00 - 05:00</option>
-                            <option value="T05:00">05:00 - 06:00</option>
-                            <option value="T06:00">06:00 - 07:00</option>
-                            <option value="T07:00">07:00 - 08:00</option>
-                            <option value="T08:00">08:00 - 09:00</option>
-                            <option value="T09:00">09:00 - 10:00</option>
-                            <option value="T10:00">10:00 - 11:00</option>
-                            <option value="T11:00">11:00 - 12:00</option>
-                            <option value="T12:00">12:00 - 13:00</option>
-                            <option value="T13:00">13:00 - 14:00</option>
-                            <option value="T14:00">14:00 - 15:00</option>
-                            <option value="T15:00">15:00 - 16:00</option>
-                            <option value="T16:00">16:00 - 17:00</option>
-                            <option value="T17:00">17:00 - 18:00</option>
-                            <option value="T18:00">18:00 - 19:00</option>
-                            <option value="T19:00">19:00 - 20:00</option>
-                            <option value="T20:00">20:00 - 21:00</option>
-                            <option value="T21:00">21:00 - 22:00</option>
-                            <option value="T22:00">22:00 - 23:00</option>
-                            <option value="T23:00">23:00 - 00:00</option>
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Número da quadra e Descrição: </label>
-                          <select id="quadraNumero" class="form-control">
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Modalidade esportiva e Valor: </label>
-                          <select id="esporteModalidade" class="form-control">
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Status: </label>
-                          <select id="status" class="form-control">
-                            <option value="Disponível">Disponível</option>
-                            <option value="Agendado">Agendado</option>
-                            <option value="Pago">Pago</option>
-                            <option value="Cancelado">Cancelado</option>
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Cliente: </label>
-                          <select id="userEmail" class="form-control">
-                            <option value="">Livre</option>
-                          </select>
-                        </div>
-                        <div style="display:none" class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Resultado: </label>
-                          <input type="text" id="resultado" maxlength="50" value="" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                        </div>
-                        <div class="text-center">
-                          <button type="button" onclick="registerAgendaByAdm()" id="registerByAdm" class="btn btn-primary btn-flat">Cadastrar</button>
-                          <a class="btn btn-primary btn-flat" href="./manageAgenda.html">Cancelar</a>
-                        </div>
-                      </form>
+              <!-- list horarios para agendar-->
+              <!-- /.box-header -->
+              <div class="box-body hidden" id="listUserAgendas">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                  <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6"></div>
+                  </div>
+                  <div class="row">
+                    <div class="box-body table-responsive no-no-margin">
+                      <table id="agendaTableUserList" class="table table-bordered table-hover dataTable" role="grid"
+                        aria-describedby="example2_info">
+                        <thead>
+                          <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Nome engine: activate to sort column descending">Dia do agendamento</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Nome engine: activate to sort column descending">Horário</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Número da Quadra</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Valor</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Modalidade</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Status</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Resultado</th>
+                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                              aria-label="Sobre Nome: activate to sort column ascending">Cancelar</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- /create -->
-              <!-- update -->
-              <div class="box-body">
-                <div class="row">
-                  <div id="agendaTableUpdate" class="hidden">
-                    <div class="box-body">
-                      <form role="form-horizontal">
-                        <div class="form-group has-feedback">
-                          <input style="display:none" value="" id="agendaForUpdate">
-                          <label for="exampleInputEmail1">Dia: </label>
-                          <input type="date" id="dayAgendaUp" min="2010-01-01" onblur="todayDate(this.value)" value="2018-12-20">
-                          <span class="fa fa-calendar form-control-feedback"></span>
-                          <label for="exampleInputEmail1">Hora: </label>
-                          <select id="hourAgendaUp">
-                            <option value="T00:00">00:00 - 01:00</option>
-                            <option value="T01:00">01:00 - 02:00</option>
-                            <option value="T02:00">02:00 - 03:00</option>
-                            <option value="T03:00">03:00 - 04:00</option>
-                            <option value="T04:00">04:00 - 05:00</option>
-                            <option value="T05:00">05:00 - 06:00</option>
-                            <option value="T06:00">06:00 - 07:00</option>
-                            <option value="T07:00">07:00 - 08:00</option>
-                            <option value="T08:00">08:00 - 09:00</option>
-                            <option value="T09:00">09:00 - 10:00</option>
-                            <option value="T10:00">10:00 - 11:00</option>
-                            <option value="T11:00">11:00 - 12:00</option>
-                            <option value="T12:00">12:00 - 13:00</option>
-                            <option value="T13:00">13:00 - 14:00</option>
-                            <option value="T14:00">14:00 - 15:00</option>
-                            <option value="T15:00">15:00 - 16:00</option>
-                            <option value="T16:00">16:00 - 17:00</option>
-                            <option value="T17:00">17:00 - 18:00</option>
-                            <option value="T18:00">18:00 - 19:00</option>
-                            <option value="T19:00">19:00 - 20:00</option>
-                            <option value="T20:00">20:00 - 21:00</option>
-                            <option value="T21:00">21:00 - 22:00</option>
-                            <option value="T22:00">22:00 - 23:00</option>
-                            <option value="T23:00">23:00 - 00:00</option>
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Número da quadra e Descrição: </label>
-                          <select id="quadraNumeroUp" class="form-control">
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Modalidade esportiva e Valor: </label>
-                          <select id="esporteModalidadeUp" class="form-control">
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Status: </label>
-                          <select id="statusUp" class="form-control">
-                            <option value="Disponível">Disponível</option>
-                            <option value="Agendado">Agendado</option>
-                            <option value="Pago">Pago</option>
-                            <option value="Cancelado">Cancelado</option>
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Cliente: </label>
-                          <select id="userEmailUp" class="form-control">
-                            <option value="">Livre</option>
-                          </select>
-                        </div>
-                        <div class="form-group has-feedback">
-                          <label for="exampleInputEmail1">Resultado: </label>
-                          <input type="text" id="resultadoUp" maxlength="50" value="" class="form-control">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                        </div>
-                        <div class="text-center">
-                          <button type="button" id="updateAgendaByAdm" onclick="updateAgenda()" class="btn btn-primary btn-flat">Salvar</button>
-                          <a class="btn btn-primary btn-flat" href="./manageAgenda.html">Cancelar</a>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <!-- /list -->
+
             </div>
-            <!-- /.update -->
           </div>
+          <!-- /.box-body -->
       </div>
-      <!-- /.box-body -->
+      <!-- /.box -->
     </div>
     <!-- /.box -->
-  </div>
-  <!-- /.box -->
 
-  </section>
+    </section>
   </div>
   <!-- /.content -->
   </div>
@@ -360,9 +242,7 @@
   </div>
   <!-- ./wrapper -->
   <script>
-    $(document).ready(function () {
-      //  $("#valor").mask('00000000000');
-    });
+
     $(document).ready(function () {
       $('.sidebar-menu').tree();
       if (loggedUserLevel == "false" || !loggedUserLevel) {
@@ -371,25 +251,6 @@
         $("#ferramentasAdm").removeClass("hidden");
       }
     })
-    function showCreateAgenda() {
-      $("#agendaTableList").addClass("hidden").removeClass("tableListed");
-
-      $("#agendaTableCreate").removeClass("hidden");
-      listFieldsToCreateAgenda()
-      $(".listed").remove();
-      $("#dayAgenda").blur();
-    };
-    function showUpdateAgenda(agendaId) {
-      $('#agendaManageButtonCreate').prop("disabled", true)
-      $('#agendaManageButtonList').prop("disabled", true)
-
-      $("#agendaTableList").addClass("hidden").removeClass("tableListed");
-      $("#agendaTableUpdate").removeClass("hidden");
-      $(".listed").remove();
-
-      $('#agendaForUpdate').attr('value', agendaId);
-      findAgendaForUpdate(agendaId);
-    };
   </script>
 </body>
 

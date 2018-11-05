@@ -202,7 +202,8 @@ exports.ResultadoAgenda = function (req, res) {
 };
 
 exports.ListUserFinishedAgenda = function (req, res) {
-    Agenda.find({ email: req.session.user, status:"Pago" }).exec(function (err, doc) {
+    var agendaToFind = req.session.user
+    Agenda.find({ userEmail: agendaToFind}).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
