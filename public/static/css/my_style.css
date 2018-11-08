@@ -1,0 +1,47 @@
+.loginBackground {    
+    background-image: url("/static/images/background_login.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.registerBackground {    
+    background-image: url("/static/images/background_register.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.playersBackground {    
+    background-image: url("/static/images/background_register.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.usersBackground {    
+    background-image: url("/static/images/background_users.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.agendaBackground {    
+    background-image: url("/static/images/background_futsal.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.fieldsBackground {    
+    background-image: url("/static/images/background_basquete.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.sportsBackground {    
+    background-image: url("/static/images/background_ballField.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.userAgendaBackground {    
+    background-image: url("/static/images/background_referee.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
