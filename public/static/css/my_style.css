@@ -23,13 +23,13 @@
 }
 
 .agendaBackground {    
-    background-image: url("/static/images/background_futsal.jpg") !important;
+    background-image: url("/static/images/background_basquete.jpg") !important;
     background-blend-mode: overlay;
     background-color: rgb(201, 201, 201);
 }
 
 .fieldsBackground {    
-    background-image: url("/static/images/background_basquete.jpg") !important;
+    background-image: url("/static/images/background_futsal.jpg") !important;
     background-blend-mode: overlay;
     background-color: rgb(201, 201, 201);
 }
@@ -42,6 +42,11 @@
 
 .userAgendaBackground {    
     background-image: url("/static/images/background_referee.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+.userDataBackground {    
+    background-image: url("/static/images/background_UserData.jpg") !important;
     background-blend-mode: overlay;
     background-color: rgb(201, 201, 201);
 }
