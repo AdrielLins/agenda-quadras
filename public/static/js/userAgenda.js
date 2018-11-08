@@ -90,7 +90,7 @@ function listFinishedAgenda() {
                 var esporteValor = ajaxData[i].esporteValor;
                 var esporteModalidade = ajaxData[i].esporteModalidade;
                 var resultado = ajaxData[i].resultado;
-                buttonAgendaId = "'" + id + "'";       
+                buttonAgendaId = "'" + id + "'";
 
                 dateAgendaSplited = dateAgendaCombined.split("T");
                 var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
@@ -100,7 +100,7 @@ function listFinishedAgenda() {
 
                 if (!todayDate(dateAgendaSplited) || status == "Cancelado") {
                     editButton = "Horário encerrado"
-                } else{
+                } else {
                     editButton = '<button type="button" onclick="cancelAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Cancelar</button>';
                 }
                 if (totalTime == 24) {
@@ -147,8 +147,15 @@ function setAgendaForUser(agendaId) {
         }
     })
 }
-// cancelar agendamento para o usuário
 function cancelAgenda(agendaId) {
+    alertify.confirm('Atenção!', 'Deseja realmente continuar com o cancelamento do horário?',
+        //se clicar em continuar, será redirecionado a function de exclusão
+        function () { confirmCancelAgenda(agendaId) }
+        //caso clique em voltar, ficará na mesma tela
+        , function () { }).set('labels', { ok: 'Continuar', cancel: 'Voltar' });
+}
+// cancelar agendamento para o usuário
+function confirmCancelAgenda(agendaId) {
 
     ajaxData = {};
     ajaxData['_id'] = agendaId;
