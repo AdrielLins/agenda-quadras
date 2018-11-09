@@ -65,6 +65,24 @@ exports.ReadUser = function (req, res) {
         }
     });
 };
+
+exports.ReadCurrentUser = function (req, res) {
+    var currentUser = req.session.user;
+    User.findOne({ email: currentUser }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
+        }
+        else {
+            res.send(doc);
+            return;
+        }
+    });
+};
+
 exports.ListUser = function (req, res) {
     User.find({}).exec(function (err, doc) {
         if (err) {
@@ -117,6 +135,40 @@ exports.UpdateUser = async function (req, res) {
     });
 };
 
+exports.UpdateCurrentUser = async function (req, res) {
+    let updatePassword = bcrypt.hashSync(req.body.password, 10);
+    var userToUpdate = req.session.user;
+    User.findOne({ email: userToUpdate }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
+        } else {
+            if (req.body.password == '') {
+                //only changes password if it comes in the request
+                updatePassword = doc.password;
+            }
+            User.findOneAndUpdate({ email: userToUpdate },
+                {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    phone: req.body.phone,
+                    password: updatePassword
+                },
+                { new: true }, function (err, doc) {
+                    if (err) {
+                        res.send(doc);
+                        return;
+                    } else {
+                        res.send('Usuário atualizado!');
+                    }
+                });
+        }
+    });
+};
+
 exports.DeleteUser = function (req, res) {
     var userToDelete = req.body.email;
     User.findOne({ email: userToDelete }).exec(function (err, doc) {
@@ -138,6 +190,7 @@ exports.DeleteUser = function (req, res) {
         }
     });
 };
+
 exports.loginUser = function (req, res) {
     User.findOne({ email: req.body.email }).exec(function (err, doc) {
         if (err) {

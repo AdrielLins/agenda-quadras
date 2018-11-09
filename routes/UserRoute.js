@@ -16,4 +16,9 @@ router.post('/login/', userController.loginUser);
 //delete user
 router.post('/delete/', userController.DeleteUser);
 
+//read user
+router.post('/currentFind/', userController.ReadCurrentUser);
+//update  current user
+router.post('/updateCurrent/', userController.UpdateCurrentUser);
+
 module.exports = router;
