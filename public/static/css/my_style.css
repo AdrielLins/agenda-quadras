@@ -50,3 +50,21 @@
     background-blend-mode: overlay;
     background-color: rgb(201, 201, 201);
 }
+.reportsBackground {    
+    background-image: url("/static/images/background_reports.jpg") !important;
+    background-blend-mode: overlay;
+    background-color: rgb(201, 201, 201);
+}
+
+.form-control{
+    border:1px solid black;
+}
+.login-box-body{
+    border:1px solid black;
+}
+.listed{
+    border:1px solid white;
+}
+.sorting_asc{
+    border:1px solid white;
+}

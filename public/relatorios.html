@@ -96,7 +96,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li>
-            <a href="#" style="color:white">
+            <a href="agenda.html" >
               <i class="fa fa-calendar"></i> <span>Agendamentos</span>
               <span class="pull-right-container">
               </span>
@@ -121,7 +121,7 @@
               <li><a href="manageAgenda.html"><i class="fa fa-clock-o"></i> Horários</a></li>
               <li><a href="manageField.html"><i class="glyphicon glyphicon-globe"></i> Quadras</a></li>
               <li><a href="manageSport.html"><i class="glyphicon glyphicon-knight"></i> Esportes</a></li>
-              <li><a href="relatorios.html "><i class="glyphicon glyphicon-usd"></i> Relatórios</a></li>
+              <li><a href="#" style="color:white"><i class="glyphicon glyphicon-usd"></i> Relatórios</a></li>
             </ul>
           </li>
         </ul>
@@ -132,7 +132,7 @@
     <!-- =============================================== -->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper userAgendaBackground">
+    <div class="content-wrapper reportsBackground">
       <div class="row">
         <!-- Content Header (Page header) -->
 
@@ -143,13 +143,12 @@
           <div class="col-xs-12">
             <div class="box">
               <section class="box-header with-border">
-                <h1>Agendamentos</h1><br>
-                <h3>Escolha uma das opções abaixo</h3>
+                <h1>Qual relatório deseja?</h1><br>
               </section>
               <div class="box-header with-border">
-                <button type="button" id="agendaManageButtonCreate" href="#" onclick="listAvaliableAgenda()" class="btn btn-primary btn-flat">Ver
-                  horários disponíveis</button>
-                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" class="btn btn-primary btn-flat">Minhas partidas</button>
+                <button type="button" id="agendaManageButtonCreate" href="#" onclick="listAvaliableAgenda()" class="btn btn-primary btn-flat">Usuários Cadastrados</button>
+                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" class="btn btn-primary btn-flat">Usuários Inadimplentes</button>
+                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" class="btn btn-primary btn-flat">Valor ainda a receber</button>
               </div>
               <!-- list horarios para agendar-->
               <!-- /.box-header -->
