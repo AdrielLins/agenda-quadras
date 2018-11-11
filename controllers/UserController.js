@@ -238,7 +238,8 @@ exports.UpdatePassRecovered = function (req, res) {
         } else {
             User.findOneAndUpdate({ email: currentUser },
                 {
-                    password: updatePassword
+                    password: updatePassword,
+                    token: ''
                 },
                 { new: true }, function (err, doc) {
                     if (err) {
