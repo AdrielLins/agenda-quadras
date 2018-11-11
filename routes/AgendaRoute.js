@@ -23,5 +23,7 @@ router.post('/resultado/', agendaController.ResultadoAgenda);
 router.post('/setAgenda/', agendaController.UserSetAgenda);
 //listar agendamentos finalizados do usu�rios
 router.post('/listUserFinishedAgenda/', agendaController.ListUserFinishedAgenda);
+//listar horarios entre intervalos de datas
+router.post('/listBetweenAgenda/', agendaController.ListBetweenAgenda);
 
 module.exports = router;

@@ -244,3 +244,26 @@ exports.UserSetAgenda = function (req, res) {
         }
     });
 };
+
+exports.ListBetweenAgenda = function (req, res) {
+
+    var startDate = req.body.startDate
+    var endDate = req.body.endDate
+
+    Agenda.find({   dateAgenda: {
+        $gte: startDate,
+        $lt: endDate
+    }}).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('Nenhum registro encontrado!');
+        }
+        else {
+            res.send(doc);
+            return;
+        }
+    });
+};
