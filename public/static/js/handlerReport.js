@@ -1,6 +1,3 @@
-var emailValid = false;
-var passwordEqual = false;
-
 function listBetweenAgendas() {
     $(".listed").remove();
     $("#extraInfo").remove();
