@@ -249,7 +249,7 @@ exports.ListBetweenAgenda = function (req, res) {
 
     var startDate = req.body.startDate
     var endDate = req.body.endDate
-
+    console.log(req.body);
     Agenda.find({   dateAgenda: {
         $gte: startDate,
         $lt: endDate
@@ -262,6 +262,7 @@ exports.ListBetweenAgenda = function (req, res) {
             res.status(statusCode.NO_CONTENT).send('Nenhum registro encontrado!');
         }
         else {
+            console.log(doc)
             res.send(doc);
             return;
         }

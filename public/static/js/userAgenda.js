@@ -1,8 +1,19 @@
+
+
 //listar todos os horários disponíveis para o usuário
 function listAvaliableAgenda() {
     $(".listed").remove();
+    var dateStart = $('#dateStart').val();
+    var dateEnd = $('#dateEnd').val();
+    var initalIsodate = dateStart + "T00:00:00.000Z";
+    var finalIsoDate = dateEnd + "T00:00:00.000Z";
+
+    ajaxData = {};
+    ajaxData['startDate'] = initalIsodate;
+    ajaxData['endDate'] = finalIsoDate;
     $.ajax({
-        type: "POST", url: "/api/agendas/list/"
+        type: "POST", url: "/api/agendas/listBetweenAgenda/",
+        data: ajaxData
     }).done(function (res) {
         if (!res) {
             alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
@@ -10,7 +21,6 @@ function listAvaliableAgenda() {
         } else {
             ajaxData = {};
             ajaxData = res;
-            $('#agendaManageButtonCreate').prop("disabled", true)
             $('#agendaManageButtonList').prop("disabled", false)
             $("#listAgendas").removeClass("hidden").addClass("tableListed");
             $("#listUserAgendas").addClass("hidden");

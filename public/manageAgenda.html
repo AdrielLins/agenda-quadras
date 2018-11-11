@@ -146,6 +146,16 @@
                 <h1>Manutenção de Horários</h1>
               </section>
               <div class="box-header with-border">
+                  <div class="form-group has-feedback">
+                    <h4>Entre qual data deseja listar os agendamentos?</h4>
+                    <label for="exampleInputEmail1">Data Inicial: </label>
+                    <input type="date" id="dateStart" min="2010-01-01" onblur="todayDate(this.value)" value="2018-08-01">
+                    <label for="exampleInputEmail1">Data Final: </label>
+                    <input type="date" id="dateEnd" min="2010-01-01" onblur="todayDate(this.value)" value="2019-02-01">
+                  </div>
+                  <br>
+                  <h4>Selecione uma das opções</h4>
+                  <br>
                 <button type="button" id="agendaManageButtonCreate" href="#" onclick="showCreateAgenda()" class="btn btn-primary btn-flat">Criar
                   novo
                   Horário</button>

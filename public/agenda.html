@@ -143,13 +143,22 @@
           <div class="col-xs-12">
             <div class="box">
               <section class="box-header with-border">
-                <h1>Agendamentos</h1><br>
-                <h3>Escolha uma das opções abaixo</h3>
+                <h1>Vamos agendar!</h1><br>
+                <h4>Primeiro, devemos filtrar sua busca.</h4>                
               </section>
               <div class="box-header with-border">
-                <button type="button" id="agendaManageButtonCreate" href="#" onclick="listAvaliableAgenda()" class="btn btn-primary btn-flat">Ver
-                  horários disponíveis</button>
-                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" class="btn btn-primary btn-flat">Minhas partidas</button>
+                <div class="form-group has-feedback">
+                  <h4>Entre qual data deseja marcar seu jogo?</h4>
+                  <label for="exampleInputEmail1">Data Inicial: </label>
+                  <input type="date" id="dateStart" min="2010-01-01" onblur="todayDate(this.value)" value="2018-08-01">
+                  <label for="exampleInputEmail1">Data Final: </label>
+                  <input type="date" id="dateEnd" min="2010-01-01" onblur="todayDate(this.value)" value="2019-02-01">
+                </div>
+                <br>
+                <h4>Selecione uma das opções</h4>
+                <br>
+                <button type="button" id="agendaManageButtonCreate" href="#" onclick="listAvaliableAgenda()" class="btn btn-primary btn-flat">Buscar horários Disponíveis</button>
+                <button type="button" id="agendaManageButtonList" onclick="listFinishedAgenda()" class="btn btn-primary btn-flat">Meus Agendamentos</button>
               </div>
               <!-- list horarios para agendar-->
               <!-- /.box-header -->
@@ -222,7 +231,7 @@
                         <tbody>
                         </tbody>
                         <p>*Cuidado! Cancelamento de um horário só poderá ser revertido entrado em contato conosco!</p><br>
-                      </table>                      
+                      </table>
                     </div>
                   </div>
                 </div>

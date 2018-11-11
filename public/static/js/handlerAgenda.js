@@ -1,75 +1,83 @@
 //listar todos os horários
 function listAgenda() {
-    if (!$("#agendaTableList").hasClass("tableListed") && localStorage.loggedUserNameLvl == "true") {
-        $.ajax({
-            type: "POST", url: "/api/agendas/list/"
-        }).done(function (res) {
-            if (!res) {
-                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
-                return
-            } else {
-                ajaxData = {};
-                ajaxData = res;
-                $("#agendaTableList").removeClass("hidden").addClass("tableListed");
-                $("#agendaTableCreate").addClass("hidden");
-                $('#agendaManageButtonCreate').prop("disabled", false);
-                $('#agendaManageButtonList').prop("disabled", true);
+    $(".listed").remove();
+    var dateStart = $('#dateStart').val();
+    var dateEnd = $('#dateEnd').val();
+    var initalIsodate = dateStart + "T00:00:00.000Z";
+    var finalIsoDate = dateEnd + "T00:00:00.000Z";
 
-                var len = ajaxData.length;
-                for (var i = 0; i < len; i++) {
+    ajaxData = {};
+    ajaxData['startDate'] = initalIsodate;
+    ajaxData['endDate'] = finalIsoDate;
+    $.ajax({
+        type: "POST", url: "/api/agendas/listBetweenAgenda/",
+        data: ajaxData
+    }).done(function (res) {
+        if (!res) {
+            alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
+            return
+        } else {
+            ajaxData = {};
+            ajaxData = res;
+            $("#agendaTableList").removeClass("hidden").addClass("tableListed");
+            $("#agendaTableCreate").addClass("hidden");
+            $('#agendaManageButtonCreate').prop("disabled", false);
 
-                    var id = ajaxData[i]._id;
-                    var dateAgendaCombined = ajaxData[i].dateAgenda;
-                    var quadraNumero = ajaxData[i].quadraNumero;
-                    var esporteValor = ajaxData[i].esporteValor;
-                    var esporteModalidade = ajaxData[i].esporteModalidade;
-                    var status = ajaxData[i].status;
-                    var userEmail = ajaxData[i].userEmail;
-                    var resultado = ajaxData[i].resultado;
-                    buttonAgendaId = "'" + id + "'";                    
-                    
-                    dateAgendaSplited = dateAgendaCombined.split("T");
-                    var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
-                    var editButton;
-                    
-                    if (!todayDate(dateAgendaSplited)) {
-                        editButton = "Horário encerrado"
-                    } else{
-                        editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Editar</button>';
-                    }
-                    
-                    var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
-                    var agendaHour = "<input type='time' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + "'>";
+            var len = ajaxData.length;
+            for (var i = 0; i < len; i++) {
 
-
-                    //style='border: none;background: white'
-                    if (userEmail == undefined) {
-                        userEmail = "Sem usuário vinculado"
-                    }
-                    if (resultado == undefined) {
-                        resultado = "Sem resultado disponível"
-                    }
-
-                    $("#agendaTableList").append(
-                        "<tr class='listed'>" +
-                        "<td> " + agendaDay + "</td>" +
-                        "<td> " + agendaHour + "</td>" +
-                        "<td> " + quadraNumero + "</td>" +
-                        "<td>R$ " + esporteValor + "</td>" +
-                        "<td> " + esporteModalidade + "</td>" +
-                        "<td> " + status + "</td>" +
-                        "<td> " + resultado + "</td>" +
-                        "<td> " + userEmail + "</td>" +
-                        "<td>" + editButton + "</td>" +
-                        "</tr>");
-
+                var id = ajaxData[i]._id;
+                var dateAgendaCombined = ajaxData[i].dateAgenda;
+                var quadraNumero = ajaxData[i].quadraNumero;
+                var esporteValor = ajaxData[i].esporteValor;
+                var esporteModalidade = ajaxData[i].esporteModalidade;
+                var status = ajaxData[i].status;
+                var userEmail = ajaxData[i].userEmail;
+                var resultado = ajaxData[i].resultado;
+                buttonAgendaId = "'" + id + "'";                    
+                
+                dateAgendaSplited = dateAgendaCombined.split("T");
+                var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
+                var editButton;
+                
+                if (!todayDate(dateAgendaSplited)) {
+                    editButton = "Horário encerrado"
+                } else{
+                    editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Editar</button>';
                 }
+                
+                var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
+                var agendaHour = "<input type='time' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + "'>";
+
+
+                //style='border: none;background: white'
+                if (userEmail == undefined) {
+                    userEmail = "Sem usuário vinculado"
+                }
+                if (resultado == undefined) {
+                    resultado = "Sem resultado disponível"
+                }
+
+                $("#agendaTableList").append(
+                    "<tr class='listed'>" +
+                    "<td> " + agendaDay + "</td>" +
+                    "<td> " + agendaHour + "</td>" +
+                    "<td> " + quadraNumero + "</td>" +
+                    "<td>R$ " + esporteValor + "</td>" +
+                    "<td> " + esporteModalidade + "</td>" +
+                    "<td> " + status + "</td>" +
+                    "<td> " + resultado + "</td>" +
+                    "<td> " + userEmail + "</td>" +
+                    "<td>" + editButton + "</td>" +
+                    "</tr>");
 
             }
 
-        })
-    }
+        }
+
+    })
 }
+
 
 
 function registerAgendaByAdm() {
