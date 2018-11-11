@@ -9,7 +9,8 @@ let UserSchema = new Schema({
     cpf: { type: String, required: true, max: 30 },
     phone: { type: String, required: true, max: 30 },
     active:{type: Boolean, required: true},
-    adm: { type: Boolean, required: true }
+    adm: { type: Boolean, required: true },
+    token: { type: String, required: false }
 });
 
 module.exports = mongoose.model('Users', UserSchema);

@@ -30,7 +30,9 @@
     "isodate": "^0.1.4",
     "mongoose": "^4.13.15",
     "morgan": "^1.9.1",
+    "nodemailer": "^4.6.8",
     "pg": "^7.4.3",
+    "random-token": "0.0.8",
     "sequelize": "^4.38.1"
   },
   "devDependencies": {

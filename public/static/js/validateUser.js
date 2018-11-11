@@ -128,7 +128,11 @@ function validateUpdateFields() {
     return ajaxData;
 }
 
-function testaCPF(strCPF) {
+function testaCPF(cpfWithMask) {
+    //remove mask
+    var strCPF = cpfWithMask.replace('.','');
+    strCPF = strCPF.replace('.','');
+    strCPF = strCPF.replace('-','');
     var Soma;
     var Resto;
     Soma = 0;

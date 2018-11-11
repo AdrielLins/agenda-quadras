@@ -20,5 +20,9 @@ router.post('/delete/', userController.DeleteUser);
 router.post('/currentFind/', userController.ReadCurrentUser);
 //update  current user
 router.post('/updateCurrent/', userController.UpdateCurrentUser);
+//read to recover user
+router.post('/readtorecoverUser/', userController.ReadToRecoverUser);
+//read to recover user
+router.post('/updatepassrecovered/', userController.UpdatePassRecovered);
 
 module.exports = router;

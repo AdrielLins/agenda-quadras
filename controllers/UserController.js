@@ -60,6 +60,7 @@ exports.ReadUser = function (req, res) {
             res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
         }
         else {
+            req.session.userToRecover = doc.email;
             res.send(doc);
             return;
         }
@@ -204,6 +205,49 @@ exports.loginUser = function (req, res) {
             req.session.adm = doc.adm;
             res.send(doc);
             return;
+        }
+    });
+};
+
+exports.ReadToRecoverUser = function (req, res) {
+    var currentUser = req.session.userToRecover;
+    User.findOne({$and: [{ email: currentUser }, { token: req.body.token }] }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('Usuário não encontrado!');
+        }
+        else {
+            res.send(doc);
+            return;
+        }
+    });
+};
+exports.UpdatePassRecovered = function (req, res) {
+    var currentUser = req.session.userToRecover;
+    let updatePassword = bcrypt.hashSync(req.body.password, 10);
+    User.findOne({ email: currentUser }).exec(function (err, doc) {
+        if (err) {
+            res.send(err);
+            return;
+        }
+        if (!doc) {
+            res.status(statusCode.NO_CONTENT).send('E-mail não encontrado!');
+        } else {
+            User.findOneAndUpdate({ email: currentUser },
+                {
+                    password: updatePassword
+                },
+                { new: true }, function (err, doc) {
+                    if (err) {
+                        res.send(doc);
+                        return;
+                    } else {
+                        res.send('Usuário atualizado!');
+                    }
+                });
         }
     });
 };

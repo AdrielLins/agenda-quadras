@@ -229,3 +229,70 @@ function updateUser() {
     });
 
 }
+function sendEmail() {
+
+    ajaxData = {};
+    ajaxData['email'] = $('#emailForRecovery').val();
+    console.log(ajaxData)
+
+    $.ajax({
+        type: "POST", url: "/api/users/find/",
+        data: ajaxData
+    }).done(function (res) {
+        if (!res|| res =='') {
+            alertify.alert('Atenção!', 'E-mail não encontrado!', function () { alertify.success(window.location.href = "./forgotPass.html"); });
+
+        }
+    })
+
+    $.ajax({
+        type: "POST", url: "/api/recoverpass/sendtoken/",
+        data: ajaxData
+    }).done(function (res) {
+        if (!res|| res =='') {
+            alertify.alert('Atenção!', 'Houve algum problema ao mandar código de autenticação, favor tentar novamento em alguns minutos!', function () { alertify.success(window.location.href = "./forgotPass.html"); });
+        } else {
+            window.location.href = "./insertPass.html";
+        }
+    })
+}
+function insertToken() {
+
+    ajaxData = {};
+    ajaxData['token'] = $('#inputToken').val();
+    console.log(ajaxData)
+
+    $.ajax({
+        type: "POST", url: "/api/users/readtorecoverUser/",
+        data: ajaxData
+    }).done(function (res) {
+        if (!res) {
+            alertify.alert('Atenção!', 'Token inválido');
+            return
+        } else {
+            window.location.href = "./changePass.html";
+        }
+    })
+}
+function changePass() {
+    
+    if (!passwordEqual) {
+        alertify.alert('Atenção!', 'Por favor, insira a mesma senha no campo "Confirmação de senha".');
+        return
+    }
+
+    ajaxData = {};
+    ajaxData['password'] = $('#password').val();
+
+    $.ajax({
+        type: "POST", url: "/api/users/updatepassrecovered/",
+        data: ajaxData
+    }).done(function (res) {
+        if (!res) {
+            alertify.alert('Atenção!', 'Token inválido');
+            return
+        } else {
+            alertify.alert('Atenção!', 'Senha alterada com sucesso, favor faça login para continuar!', function () { alertify.success(window.location.href = "./logout"); });
+        }
+    })
+}

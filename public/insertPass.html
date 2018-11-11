@@ -41,24 +41,18 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Seja bem vindo!</p>
-      <p class="login-box-msg">Insira seus dados para continuar</p>
+      <p class="login-box-msg">Recuperação de conta</p>
+      <p class="login-box-msg">Insira o código recebido em seu E-mail:</p>
       <form>
         <div class="form-group has-feedback">
-          <input id="email" type="email" maxlength="100" onblur="isValidEmailAddress()" class="form-control"
-            placeholder="Email">
+          <input id="inputToken" type="text" maxlength="100" class="form-control"
+            placeholder="Código de verificação">
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
 
-        <div class="form-group has-feedback">
-          <input id="password" minlength="6" maxlength="15" type="password" class="form-control" placeholder="Senha">
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-
         <div class="text-center">
-          <button onclick="login()" type="button" id="buttonLogin" class="btn btn-primary btn-flat">Entrar</button>
-          <a class="btn btn-primary btn-flat" id="redirectToRegister" href="./cadastro.html">Cadastre-se!</a>
-          <br><a id="recoverPass" href="./forgotPass.html">Esqueceu a conta?</a>
+          <button onclick="insertToken()" type="button" id="buttonLogin" class="btn btn-primary btn-flat">Resetar senha</button>
+          <a class="btn btn-primary btn-flat" id="redirectToLogin" href="./login.html">Cancelar</a>
         </div>
       </form>
 
@@ -68,8 +62,3 @@
 </body>
 
 </html>
-<script>
-  $(document).ready(function () {
-    $("#email").blur();
-  });
-</script>

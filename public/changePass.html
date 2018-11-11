@@ -41,24 +41,22 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Seja bem vindo!</p>
-      <p class="login-box-msg">Insira seus dados para continuar</p>
+      <p class="login-box-msg">Recuperação de conta</p>
+      <p class="login-box-msg">Insira a nova senha:</p>
       <form>
         <div class="form-group has-feedback">
-          <input id="email" type="email" maxlength="100" onblur="isValidEmailAddress()" class="form-control"
-            placeholder="Email">
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          <input type="password" maxlength="15" id="password" class="form-control" placeholder="Nova Senha">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
-
         <div class="form-group has-feedback">
-          <input id="password" minlength="6" maxlength="15" type="password" class="form-control" placeholder="Senha">
+          <input type="password" maxlength="15" onblur="isEqualPassword()" id="passwordConfirm" class="form-control"
+            placeholder="Cofirmação de senha">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
 
         <div class="text-center">
-          <button onclick="login()" type="button" id="buttonLogin" class="btn btn-primary btn-flat">Entrar</button>
-          <a class="btn btn-primary btn-flat" id="redirectToRegister" href="./cadastro.html">Cadastre-se!</a>
-          <br><a id="recoverPass" href="./forgotPass.html">Esqueceu a conta?</a>
+          <button onclick="changePass()" type="button" id="buttonLogin" class="btn btn-primary btn-flat">Confirmar Senha</button>
+          <a class="btn btn-primary btn-flat" id="redirectToLogin" href="./login.html">Cancelar</a>
         </div>
       </form>
 
@@ -68,8 +66,3 @@
 </body>
 
 </html>
-<script>
-  $(document).ready(function () {
-    $("#email").blur();
-  });
-</script>

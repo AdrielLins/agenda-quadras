@@ -28,8 +28,10 @@ app.use(session({
 
 // This check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
 app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-    res.clearCookie('user_sid');
+  if(!req.session.userToRecover){
+    if (req.cookies.user_sid && !req.session.user) {
+      res.clearCookie('user_sid');
+    }
   }
   next();
 });
@@ -49,6 +51,7 @@ app.use('/api/users', require('./routes/UserRoute'));
 app.use('/api/fields', require('./routes/FieldRoute'));
 app.use('/api/sports', require('./routes/SportRoute'));
 app.use('/api/agendas', require('./routes/AgendaRoute'));
+app.use('/api/recoverPass', require('./routes/RecoverPass'));
 
 // Initialize routes for user navigation
 app.use('/', require('./routes/navigationRoutes'));
