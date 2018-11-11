@@ -286,7 +286,7 @@ function updateAgenda(idAgenda) {
         return
     }
     //get form values
-    var combinedSport = $('#esporteModalidade').val();
+    var combinedSport = $('#esporteModalidadeUp').val();
     var dayAgenda = $('#dayAgendaUp').val();
     var hourAgenda = $('#hourAgendaUp').val();
     var quadraNumero = $('#quadraNumeroUp').val();
