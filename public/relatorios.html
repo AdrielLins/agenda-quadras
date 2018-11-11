@@ -146,8 +146,10 @@
               <div class="box-header with-border">
                 <button type="button" id="agendaManageButtonList" href="#" onclick="listBetweenAgendas()" class="btn btn-primary btn-flat">Agendamentos
                   do mês</button>
-                <button type="button" id="userManageButtonList" onclick="listUser()" class="btn btn-primary btn-flat">Total de Usuários</button>
-                <button type="button" id="paymentManageButtonList" onclick="lisPaymenttUser()" class="btn btn-primary btn-flat">Usuários Inadimplentes</button>
+                <button type="button" id="userManageButtonList" onclick="listUser()" class="btn btn-primary btn-flat">Total
+                  de Usuários</button>
+                <button type="button" id="paymentManageButtonList" onclick="lisPaymenttUser()" class="btn btn-primary btn-flat">Usuários
+                  Inadimplentes</button>
               </div>
               <div class="box-body">
                 <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -205,8 +207,8 @@
                           </div>
                         </tbody>
                       </table>
-                      <table id="paymentReportsTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
-                        aria-describedby="example2_info">
+                      <table id="paymentReportsTableList" class="table table-bordered table-hover dataTable hidden"
+                        role="grid" aria-describedby="example2_info">
                         <thead>
                           <tr role="row">
                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
@@ -275,13 +277,13 @@
       var pdf = new jsPDF('p', 'pt', 'ledger');
       // source can be HTML-formatted string, or a reference
       // to an actual DOM element from which the text will be scraped.
-      if(report == 'agenda'){
+      if (report == 'agenda') {
         source = $('#agendaReportsTableList')[0];
       }
-      if(report == 'users'){
+      if (report == 'users') {
         source = $('#usersReportsTableList')[0];
       }
-      if(report == 'payment'){
+      if (report == 'payment') {
         source = $('#paymentReportsTableList')[0];
       }
 

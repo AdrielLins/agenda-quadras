@@ -34,18 +34,18 @@ function listAgenda() {
                 var status = ajaxData[i].status;
                 var userEmail = ajaxData[i].userEmail;
                 var resultado = ajaxData[i].resultado;
-                buttonAgendaId = "'" + id + "'";                    
-                
+                buttonAgendaId = "'" + id + "'";
+
                 dateAgendaSplited = dateAgendaCombined.split("T");
                 var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
                 var editButton;
-                
+
                 if (!todayDate(dateAgendaSplited)) {
                     editButton = "Horário encerrado"
-                } else{
+                } else {
                     editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Editar</button>';
                 }
-                
+
                 var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
                 var agendaHour = "<input type='time' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + "'>";
 
@@ -82,7 +82,7 @@ function listAgenda() {
 
 function registerAgendaByAdm() {
     var dayAgenda = $('#dayAgenda').val();
-    
+
     if (!todayDate(dayAgenda)) {
         alertify.alert('Atenção!', 'Por favor, preencha uma data válida!');
         return
@@ -269,7 +269,7 @@ function populateFieldsForUpdate(agendaData) {
     })
     var dateAgendaSplited = agendaData['dateAgenda'].split("T");
     var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
-    
+
     $("#statusUp").val(agendaData['status']);
     $("#resultadoUp").val(agendaData['resultado']);
     $("#dayAgendaUp").val(dateAgendaSplited[0]);
@@ -324,7 +324,7 @@ function updateAgenda(idAgenda) {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Atenção!','Agenda atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageAgenda.html"); });
+            alertify.alert('Atenção!', 'Agenda atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageAgenda.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');

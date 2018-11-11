@@ -87,7 +87,7 @@ function listUser() {
             type: "POST", url: "/api/users/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};

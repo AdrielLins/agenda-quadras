@@ -4,7 +4,7 @@ function listSport() {
             type: "POST", url: "/api/sports/list/"
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -50,7 +50,7 @@ function registerSportByAdm() {
             alertify.alert('Atenção!', 'Esta modalidade já está sendo usada!');
             return
         } else {
-            alertify.alert('Atenção!','Esporte criado com sucesso!', function () { alertify.success(window.location.href = "./manageSport.html"); });
+            alertify.alert('Atenção!', 'Esporte criado com sucesso!', function () { alertify.success(window.location.href = "./manageSport.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -69,7 +69,7 @@ function findSportForUpdate(sportUpdate) {
             data: ajaxData
         }).done(function (res) {
             if (!res) {
-                alertify.alert('Atenção!','Desculpe, tivemos algum erro no sistema :(');
+                alertify.alert('Atenção!', 'Desculpe, tivemos algum erro no sistema :(');
                 return
             } else {
                 ajaxData = {};
@@ -101,7 +101,7 @@ function updateSport() {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Atenção!','Esporte atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageSport.html"); });
+            alertify.alert('Atenção!', 'Esporte atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageSport.html"); });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');

@@ -203,7 +203,7 @@ exports.ResultadoAgenda = function (req, res) {
 
 exports.ListUserFinishedAgenda = function (req, res) {
     var agendaToFind = req.session.user
-    Agenda.find({ userEmail: agendaToFind}).exec(function (err, doc) {
+    Agenda.find({ userEmail: agendaToFind }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
@@ -249,11 +249,12 @@ exports.ListBetweenAgenda = function (req, res) {
 
     var startDate = req.body.startDate
     var endDate = req.body.endDate
-    console.log(req.body);
-    Agenda.find({   dateAgenda: {
-        $gte: startDate,
-        $lt: endDate
-    }}).exec(function (err, doc) {
+    Agenda.find({
+        dateAgenda: {
+            $gte: startDate,
+            $lt: endDate
+        }
+    }).exec(function (err, doc) {
         if (err) {
             res.send(err);
             return;
@@ -262,7 +263,6 @@ exports.ListBetweenAgenda = function (req, res) {
             res.status(statusCode.NO_CONTENT).send('Nenhum registro encontrado!');
         }
         else {
-            console.log(doc)
             res.send(doc);
             return;
         }

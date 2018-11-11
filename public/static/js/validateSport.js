@@ -2,9 +2,9 @@ function validateRegisterSports() {
 
     var valor = $('#valor').val();
     var modalidade = $('#modalidade').val();
-    var valorFixed = valor.replace(',','.'); 
+    var valorFixed = valor.replace(',', '.');
     valorFixed = parseFloat(valorFixed).toFixed(2);
-    
+
     if (!valor) {
         alertify.alert('Atenção!', 'Favor preencha o campo "Valor".');
         return false;
@@ -26,7 +26,7 @@ function validateUpdateSports() {
     var _id = $('#sport_IdUp').val();
     var valor = $('#valorUp').val();
     var modalidade = $('#modalidadeUp').val();
-    var valorFixed = valor.replace(',','.');  
+    var valorFixed = valor.replace(',', '.');
     valorFixed = parseFloat(valor).toFixed(2);
 
     if (!valor) {

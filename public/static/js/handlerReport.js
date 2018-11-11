@@ -28,7 +28,7 @@ function listBetweenAgendas() {
             $("#agendaReportsTableList").removeClass("hidden").addClass("tableListed");
             $("#usersReportsTableList").addClass("hidden").removeClass("tableListed");
             $("#paymentReportsTableList").addClass("hidden").removeClass("tableListed");
-            
+
             $('#agendaManageButtonList').prop("disabled", true);
             $('#userManageButtonList').prop("disabled", false);
             $('#paymentManageButtonList').prop("disabled", false);
