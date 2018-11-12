@@ -159,79 +159,85 @@
                   </div>
                   <div class="row">
                     <div class="box-body table-responsive no-margin">
-                      <table id="usersReportsTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
-                        aria-describedby="example2_info">
-                        <thead>
-                          <tr role="row">
-                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-sort="ascending" aria-label="Nome engine: activate to sort column descending">Nome</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Sobrenome</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="CPF: activate to sort column ascending">CPF</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="E-mail: activate to sort column ascending">E-mail</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Telefone: activate to sort column ascending">Telefone</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <div class="align-center">
-                            <input class="btn btn-primary btn-flat hidden" type="button" id="exportpdfUser" onclick="createPdf('users')"
-                              value="Gerar relatório em PDF">
-                          </div>
-                        </tbody>
-                      </table>
-                      <table id="agendaReportsTableList" class="table table-bordered table-hover dataTable hidden" role="grid"
-                        aria-describedby="example2_info">
-                        <thead>
-                          <tr role="row">
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Nome engine: activate to sort column descending">E-mail</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Nome engine: activate to sort column descending">Dia do agendamento</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Nome engine: activate to sort column descending">Horário</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Número da Quadra</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Valor</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Modalidade</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <div class="align-center">
-                            <input type="button" class="btn btn-primary btn-flat hidden" id="exportpdfAgenda" onclick="createPdf('agenda')"
-                              value="Gerar relatório em PDF">
-                          </div>
-                        </tbody>
-                      </table>
-                      <table id="paymentReportsTableList" class="table table-bordered table-hover dataTable hidden"
-                        role="grid" aria-describedby="example2_info">
-                        <thead>
-                          <tr role="row">
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Nome engine: activate to sort column descending">E-mail</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Nome engine: activate to sort column descending">Dia do agendamento</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Nome engine: activate to sort column descending">Horário</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Número da Quadra</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Valor</th>
-                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
-                              aria-label="Sobre Nome: activate to sort column ascending">Modalidade</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <div class="align-center">
-                            <input type="button" class="btn btn-primary btn-flat hidden" id="exportpdfPayment" onclick="createPdf('payment')"
-                              value="Gerar relatório em PDF">
-                          </div>
-                        </tbody>
-                      </table>
+                      <div id="userPDFTableList">
+                        <table id="usersReportsTableList" class="table table-bordered table-hover dataTable hidden"
+                          role="grid" aria-describedby="example2_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-sort="ascending" aria-label="Nome engine: activate to sort column descending">Nome</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Sobrenome</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="CPF: activate to sort column ascending">CPF</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="E-mail: activate to sort column ascending">E-mail</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Telefone: activate to sort column ascending">Telefone</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <div class="align-center">
+                              <input class="btn btn-primary btn-flat hidden" type="button" id="exportpdfUser" onclick="createPdf('users')"
+                                value="Gerar relatório em PDF">
+                            </div>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div id="agendaPDFTableList">
+                        <table id="agendaReportsTableList" class="table table-bordered table-hover dataTable hidden"
+                          role="grid" aria-describedby="example2_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Nome engine: activate to sort column descending">E-mail</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Nome engine: activate to sort column descending">Dia do agendamento</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Nome engine: activate to sort column descending">Horário</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Número da Quadra</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Valor</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Modalidade</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <div class="align-center">
+                              <input type="button" class="btn btn-primary btn-flat hidden" id="exportpdfAgenda" onclick="createPdf('agenda')"
+                                value="Gerar relatório em PDF">
+                            </div>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div id="paymentPDFTableList">
+                        <table id="paymentReportsTableList" class="table table-bordered table-hover dataTable hidden"
+                          role="grid" aria-describedby="example2_info">
+                          <thead>
+                            <tr role="row">
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Nome engine: activate to sort column descending">E-mail</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Nome engine: activate to sort column descending">Dia do agendamento</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Nome engine: activate to sort column descending">Horário</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Número da Quadra</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Valor</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                aria-label="Sobre Nome: activate to sort column ascending">Modalidade</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <div class="align-center">
+                              <input type="button" class="btn btn-primary btn-flat hidden" id="exportpdfPayment"
+                                onclick="createPdf('payment')" value="Gerar relatório em PDF">
+                            </div>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -274,17 +280,17 @@
 
 
     function createPdf(report) {
-      var pdf = new jsPDF('p', 'pt', 'ledger');
+      var pdf = new jsPDF('l', 'px', 'ledger');
       // source can be HTML-formatted string, or a reference
       // to an actual DOM element from which the text will be scraped.
       if (report == 'agenda') {
-        source = $('#agendaReportsTableList')[0];
+        source = $('#agendaPDFTableList')[0];
       }
       if (report == 'users') {
-        source = $('#usersReportsTableList')[0];
+        source = $('#userPDFTableList')[0];
       }
       if (report == 'payment') {
-        source = $('#paymentReportsTableList')[0];
+        source = $('#paymentPDFTableList')[0];
       }
 
       // we support special element handlers. Register them with jQuery-style 
