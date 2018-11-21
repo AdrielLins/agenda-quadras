@@ -140,7 +140,10 @@
         <section class="content">
           <div class="col-xs-12">
             <div class="box">
-              <div class="form-group has-feedback">
+              <section class="box-header with-border">
+                <h1>Relatórios gerais</h1>
+              </section>
+              <div class="box-body">
                 <h4>Entre qual data deseja filtrar seus relatórios?</h4>
                 <label for="exampleInputEmail1">Data Inicial: </label>
                 <input type="date" id="dateStart" min="2010-01-01" value="2018-08-01">
@@ -148,14 +151,10 @@
                 <input type="date" id="dateEnd" min="2010-01-01" onblur="todayDate(this.value)" value="2019-02-01">
               </div>
               <br>
-              <section class="box-header with-border">
-                <h1>Relatórios gerais</h1>
-              </section>
               <!-- user-list -->
               <!-- /.box-header -->
               <div class="box-header with-border">
-                <button type="button" id="agendaManageButtonList" href="#" onclick="listBetweenAgendas()" class="btn btn-primary btn-flat">Agendamentos
-                  do mês</button>
+                <button type="button" id="agendaManageButtonList" href="#" onclick="listBetweenAgendas()" class="btn btn-primary btn-flat">Agendamentos</button>
                 <button type="button" id="userManageButtonList" onclick="listUser()" class="btn btn-primary btn-flat">Total
                   de Usuários</button>
                 <button type="button" id="paymentManageButtonList" onclick="lisPaymenttUser()" class="btn btn-primary btn-flat">Usuários
@@ -189,8 +188,9 @@
                           <tbody>
                             <div class="align-center">
                               <input class="btn btn-primary btn-flat hidden" type="button" id="exportpdfUser" onclick="createPdf('users')"
-                                value="Gerar relatório em PDF">
+                                value="Download do relatório em PDF">
                             </div>
+                            <br>
                           </tbody>
                         </table>
                       </div>
@@ -216,8 +216,9 @@
                           <tbody>
                             <div class="align-center">
                               <input type="button" class="btn btn-primary btn-flat hidden" id="exportpdfAgenda" onclick="createPdf('agenda')"
-                                value="Gerar relatório em PDF">
+                                value="Download do relatório em PDF">
                             </div>
+                            <br>
                           </tbody>
                         </table>
                       </div>
@@ -243,8 +244,9 @@
                           <tbody>
                             <div class="align-center">
                               <input type="button" class="btn btn-primary btn-flat hidden" id="exportpdfPayment"
-                                onclick="createPdf('payment')" value="Gerar relatório em PDF">
+                                onclick="createPdf('payment')" value="Download do relatório em PDF">
                             </div>
+                            <br>
                           </tbody>
                         </table>
                       </div>
