@@ -78,13 +78,11 @@ function listBetweenAgendas() {
                     "</tr>");
 
             }
-            startDateCalc = dd + "/" + mm + "/" + yyyy;
-            endDateDateCalc = dd + "/" + (mm + 1) + "/" + yyyy;
+            if(countAgendas > 0){
+                var divCount = "<span id='extraInfo'><br><br><h3>Total de horários marcados neste período: " + countAgendas + "</h3><span>"
 
-            var divCount = "<span id='extraInfo'><br><br><h3>Total de horários marcados entre " + startDateCalc + " - " + endDateDateCalc + " : " + countAgendas + "</h3><span>"
-
-            $("#agendaReportsTableList").append(divCount);
-
+                $("#agendaReportsTableList").append(divCount);
+            }
         }
 
     })
