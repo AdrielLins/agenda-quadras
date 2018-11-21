@@ -298,12 +298,18 @@
       // to an actual DOM element from which the text will be scraped.
       if (report == 'agenda') {
         source = $('#agendaPDFTableList')[0];
+        pdf.text('Relatório de agendamentos do período', 60, 60)
+        pdf.text('Total de agendamentos :  ' + contInfoList, 60, 80);
       }
       if (report == 'users') {
         source = $('#userPDFTableList')[0];
+        pdf.text('Relatório de usuários cadastrados', 60, 60);
+        pdf.text('Total de usuários :  ' + contInfoList, 60, 80);
       }
       if (report == 'payment') {
         source = $('#paymentPDFTableList')[0];
+        pdf.text('Relatório de usuários inadimplentes', 60, 60)
+        pdf.text('Total de clientes devedores :  ' + contInfoList + '  Total devido :  R$' + totalDebit, 60, 80);
       }
 
       // we support special element handlers. Register them with jQuery-style 

@@ -1,3 +1,6 @@
+var contInfoList = 0;
+var totalDebit = 0;
+
 function listBetweenAgendas() {
     $(".listed").remove();
     var table = $('#usersReportsTableList').DataTable();
@@ -80,7 +83,7 @@ function listBetweenAgendas() {
             }
             if(countAgendas > 0){
                 var divCount = "<span id='extraInfo'><br><br><h3>Total de horários marcados neste período: " + countAgendas + "</h3><span>"
-
+                contInfoList = countAgendas;
                 $("#agendaReportsTableList").append(divCount);
             }
         }
@@ -147,7 +150,7 @@ function listUser() {
             }
 
             var divCount = "<span id='extraInfo'><br><br><h3>Total de usuários registrados: " + len + "</h3></span>"
-
+            contInfoList = len;
             $("#usersReportsTableList").append(divCount);
         }
 
@@ -239,7 +242,8 @@ function lisPaymenttUser() {
 
             }
             var divCount = "<span id='extraInfo'><br><br><h3>Total de usuários inadimplentes: " + countUsers + "</h3><br><h3>Total devido pelos usuários: R$" + totalVal + "</h3></span>"
-
+            contInfoList = countUsers;
+            totalDebit = totalVal;
             $("#paymentReportsTableList").append(divCount);
 
         }
