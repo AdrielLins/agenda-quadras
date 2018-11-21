@@ -2,6 +2,10 @@ const Field = require('../models/FieldModel');
 var statusCode = require('http-status-codes');
 
 exports.CreateField = function (req, res, next) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
 
     let newField = new Field({
         descricao: req.body.descricao,
@@ -28,6 +32,10 @@ exports.CreateField = function (req, res, next) {
 }
 
 exports.ReadField = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     Field.findOne({ numero: req.body.numero }).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -43,6 +51,10 @@ exports.ReadField = function (req, res) {
     });
 };
 exports.ListField = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     Field.find({}).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -59,6 +71,10 @@ exports.ListField = function (req, res) {
 };
 
 exports.UpdateField = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var fieldToUpdate = req.body.numero
     Field.findOne({ numero: fieldToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -85,6 +101,10 @@ exports.UpdateField = function (req, res) {
 };
 
 exports.DeleteField = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var fieldToDelete = req.body.numero;
     Field.findOne({ numero: fieldToDelete }).exec(function (err, doc) {
         if (err) {

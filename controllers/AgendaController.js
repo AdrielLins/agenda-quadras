@@ -3,6 +3,10 @@ var isodate = require("isodate");
 var statusCode = require('http-status-codes');
 
 exports.CreateAgenda = function (req, res, next) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
 
     let newAgenda = new Agenda({
         dateAgenda: req.body.dateAgenda,
@@ -37,6 +41,10 @@ exports.CreateAgenda = function (req, res, next) {
 }
 
 exports.ReadAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     Agenda.findById({ _id: req.body._id }).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -53,6 +61,10 @@ exports.ReadAgenda = function (req, res) {
 };
 
 exports.ListAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     Agenda.find({}).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -69,6 +81,10 @@ exports.ListAgenda = function (req, res) {
 };
 
 exports.UpdateAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToUpdate = req.body._id
     Agenda.findById({ _id: agendaToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -101,6 +117,10 @@ exports.UpdateAgenda = function (req, res) {
 };
 
 exports.InsertEmailAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToUpdate = req.body._id
     Agenda.findById({ _id: agendaToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -128,6 +148,10 @@ exports.InsertEmailAgenda = function (req, res) {
 };
 
 exports.DeleteAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToDelete = req.body._id;
     Agenda.findById({ _id: agendaToDelete }).exec(function (err, doc) {
         if (err) {
@@ -150,6 +174,10 @@ exports.DeleteAgenda = function (req, res) {
 };
 
 exports.StatusAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToUpdate = req.body._id
     Agenda.findById({ _id: agendaToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -176,6 +204,10 @@ exports.StatusAgenda = function (req, res) {
 };
 
 exports.ResultadoAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToUpdate = req.body._id
     Agenda.findById({ _id: agendaToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -202,6 +234,10 @@ exports.ResultadoAgenda = function (req, res) {
 };
 
 exports.ListUserFinishedAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToFind = req.session.user
     Agenda.find({ userEmail: agendaToFind }).exec(function (err, doc) {
         if (err) {
@@ -219,6 +255,10 @@ exports.ListUserFinishedAgenda = function (req, res) {
 };
 
 exports.UserSetAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var agendaToUpdate = req.body._id
     Agenda.findById({ _id: agendaToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -246,6 +286,10 @@ exports.UserSetAgenda = function (req, res) {
 };
 
 exports.ListBetweenAgenda = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
 
     var startDate = req.body.startDate
     var endDate = req.body.endDate

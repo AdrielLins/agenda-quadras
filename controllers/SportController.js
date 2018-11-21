@@ -2,6 +2,10 @@ const Sport = require('../models/SportModel');
 var statusCode = require('http-status-codes');
 
 exports.CreateSport = function (req, res, next) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
 
     let newSport = new Sport({
         modalidade: req.body.modalidade,
@@ -43,6 +47,10 @@ exports.ReadSport = function (req, res) {
     });
 };
 exports.ListSport = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     Sport.find({}).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -59,6 +67,10 @@ exports.ListSport = function (req, res) {
 };
 
 exports.UpdateSport = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var sportToUpdate = req.body._id
     Sport.findById({ _id: sportToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -86,6 +98,10 @@ exports.UpdateSport = function (req, res) {
 };
 
 exports.DeleteSport = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var sportToDelete = req.body.modalidade;
     Sport.findOne({ modalidade: sportToDelete }).exec(function (err, doc) {
         if (err) {

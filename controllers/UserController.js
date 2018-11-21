@@ -68,6 +68,10 @@ exports.ReadUser = function (req, res) {
 };
 
 exports.ReadCurrentUser = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var currentUser = req.session.user;
     User.findOne({ email: currentUser }).exec(function (err, doc) {
         if (err) {
@@ -85,6 +89,10 @@ exports.ReadCurrentUser = function (req, res) {
 };
 
 exports.ListUser = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     User.find({}).exec(function (err, doc) {
         if (err) {
             res.send(err);
@@ -101,6 +109,10 @@ exports.ListUser = function (req, res) {
 };
 
 exports.UpdateUser = async function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     let updatePassword = bcrypt.hashSync(req.body.password, 10);
     var userToUpdate = req.body.email
     User.findOne({ email: userToUpdate }).exec(function (err, doc) {
@@ -171,6 +183,10 @@ exports.UpdateCurrentUser = async function (req, res) {
 };
 
 exports.DeleteUser = function (req, res) {
+    if (!req.session.user && !req.cookies.user_sid) {
+        res.send(statusCode.UNAUTHORIZED);
+        return;
+    }
     var userToDelete = req.body.email;
     User.findOne({ email: userToDelete }).exec(function (err, doc) {
         if (err) {
