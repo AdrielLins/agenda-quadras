@@ -76,6 +76,8 @@ function listAgenda() {
         }
 
     })
+    //insert list on data table after all page is loaded to avoid errors
+    setTimeout(function(){ $('#agendaTableList').DataTable(); }, 300);
 }
 
 

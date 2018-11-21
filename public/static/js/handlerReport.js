@@ -88,6 +88,7 @@ function listBetweenAgendas() {
         }
 
     })
+    //insert list on data table after all page is loaded to avoid errors
     setTimeout(function(){ $('#agendaReportsTableList').DataTable(); }, 300);
 
 }
@@ -153,6 +154,7 @@ function listUser() {
         }
 
     })
+    //insert list on data table after all page is loaded to avoid errors
     setTimeout(function(){ $('#usersReportsTableList').DataTable(); }, 300);
 }
 
@@ -245,5 +247,6 @@ function lisPaymenttUser() {
         }
 
     })
+    //insert list on data table after all page is loaded to avoid errors
     setTimeout(function(){ $('#paymentReportsTableList').DataTable(); }, 300);
 }

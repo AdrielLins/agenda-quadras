@@ -271,8 +271,7 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
-      $('#fieldManageButtonList').trigger('click');
-      setTimeout(function(){ $('#fieldTableList').DataTable(); }, 300);
+      $('#fieldManageButtonList').trigger('click');      
     })
     function showCreateField() {
       $("#fieldTableList").addClass("hidden").removeClass("tableListed");
@@ -281,6 +280,9 @@
       $(".listed").remove();
       $('#fieldManageButtonCreate').prop("disabled", true);
       $('#fieldManageButtonList').prop("disabled", false);
+      //remove data-table when exit list page
+      var table = $('#fieldTableList').DataTable();
+      table.destroy();
     };
     function showUpdateField(fieldNumber) {
       $('#fieldManageButtonCreate').prop("disabled", true)
@@ -293,6 +295,9 @@
       $("#numeroUp").mask('00000000000');
 
       findFieldForUpdate(fieldNumber);
+      //remove data-table when exit list page
+      var table = $('#fieldTableList').DataTable();
+      table.destroy();
     };
   </script>
 </body>

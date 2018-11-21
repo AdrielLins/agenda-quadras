@@ -348,8 +348,7 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
-      $('#userManageButtonList').trigger('click');
-      setTimeout(function(){ $('#userTableList').DataTable(); }, 300);
+      $('#userManageButtonList').trigger('click');      
     })
     function showCreateUser() {
       $("#userTableList").addClass("hidden").removeClass("tableListed");
@@ -358,6 +357,9 @@
       $(".listed").remove();
       $('#userManageButtonCreate').prop("disabled", true);
       $('#userManageButtonList').prop("disabled", false);
+      //remove data-table when exit list page
+      var table = $('#userTableList').DataTable();
+      table.destroy();
     };
     function showUpdateUser(userEmail) {
       $('#userManageButtonCreate').prop("disabled", true)
@@ -372,6 +374,9 @@
       $("#phoneUp").blur();
 
       findUserForUpdate(userEmail);
+      //remove data-table when exit list page
+      var table = $('#userTableList').DataTable();
+      table.destroy();
     };
   </script>
 </body>

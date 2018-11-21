@@ -400,8 +400,7 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
-      $('#agendaManageButtonList').trigger('click');
-      setTimeout(function(){ $('#agendaTableList').DataTable(); }, 300);      
+      $('#agendaManageButtonList').trigger('click');        
     })
     function showCreateAgenda() {
       $("#agendaTableList").addClass("hidden").removeClass("tableListed");
@@ -412,6 +411,10 @@
       $("#dayAgenda").blur();
       $('#agendaManageButtonCreate').prop("disabled", true);
       $('#agendaManageButtonList').prop("disabled", false);
+      
+      //remove data-table when exit list page
+      var table = $('#agendaTableList').DataTable();
+      table.destroy();
     };
     function showUpdateAgenda(agendaId) {
       $('#agendaManageButtonCreate').prop("disabled", true)
@@ -423,6 +426,9 @@
 
       $('#agendaForUpdate').attr('value', agendaId);
       findAgendaForUpdate(agendaId);
+      //remove data-table when exit list page
+      var table = $('#agendaTableList').DataTable();
+      table.destroy();
     };
   </script>
 </body>

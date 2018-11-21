@@ -34,6 +34,8 @@ function listSport() {
             }
 
         })
+        //insert list on data table after all page is loaded to avoid errors
+        setTimeout(function(){ $('#sportTableList').DataTable(); }, 300);
     }
 }
 

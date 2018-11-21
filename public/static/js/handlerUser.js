@@ -137,6 +137,8 @@ function listUser() {
             }
 
         })
+        //insert list on data table after all page is loaded to avoid errors
+        setTimeout(function(){ $('#userTableList').DataTable(); }, 300);
     }
 }
 

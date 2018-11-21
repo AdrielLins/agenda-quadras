@@ -141,6 +141,7 @@ function listFinishedAgenda() {
 
         }
     })
+    //insert list on data table after all page is loaded to avoid errors
     setTimeout(function(){ $('#agendaTableUserList').DataTable(); }, 300);
 }
 // setar agendamento para o usuário

@@ -276,7 +276,6 @@
         $("#ferramentasAdm").removeClass("hidden");
       }
       $('#sportManageButtonList').trigger('click');
-      setTimeout(function(){ $('#sportTableList').DataTable(); }, 300);
     })
     function showCreateSport() {
       $("#sportTableList").addClass("hidden").removeClass("tableListed");
@@ -285,6 +284,9 @@
       $(".listed").remove();
       $('#sportManageButtonCreate').prop("disabled", true);
       $('#sportManageButtonList').prop("disabled", false);
+      //remove data-table when exit list page
+      var table = $('#sportTableList').DataTable();
+      table.destroy();
     };
     function showUpdateSport(sportModalidade) {
       $('#sportManageButtonCreate').prop("disabled", true)
@@ -297,6 +299,9 @@
       //$("#valorUp").mask('00000000000');
 
       findSportForUpdate(sportModalidade);
+      //remove data-table when exit list page
+      var table = $('#sportTableList').DataTable();
+      table.destroy();
     };
   </script>
 </body>
