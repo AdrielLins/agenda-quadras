@@ -1,18 +1,20 @@
 function listBetweenAgendas() {
     $(".listed").remove();
+    var table = $('#usersReportsTableList').DataTable();
+    var tableTwo = $('#paymentReportsTableList').DataTable();
+    table.destroy();
+    tableTwo.destroy();
+
     $("#extraInfo").remove();
 
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-
-    actualIsoDate = yyyy + "-" + mm + "-" + dd + "T00:00:00.000Z";
-    futureIsoDate = yyyy + "-" + (mm + 1) + "-" + dd + "T00:00:00.000Z";
+    var dateStart = $('#dateStart').val();
+    var dateEnd = $('#dateEnd').val();
+    var initalIsodate = dateStart + "T00:00:00.000Z";
+    var finalIsoDate = dateEnd + "T00:00:00.000Z";
 
     ajaxData = {};
-    ajaxData['startDate'] = actualIsoDate;
-    ajaxData['endDate'] = futureIsoDate;
+    ajaxData['startDate'] = initalIsodate;
+    ajaxData['endDate'] = finalIsoDate;
 
     $.ajax({
         type: "POST", url: "/api/agendas/listBetweenAgenda/",
@@ -28,10 +30,6 @@ function listBetweenAgendas() {
             $("#agendaReportsTableList").removeClass("hidden").addClass("tableListed");
             $("#usersReportsTableList").addClass("hidden").removeClass("tableListed");
             $("#paymentReportsTableList").addClass("hidden").removeClass("tableListed");
-
-            $('#agendaManageButtonList').prop("disabled", true);
-            $('#userManageButtonList').prop("disabled", false);
-            $('#paymentManageButtonList').prop("disabled", false);
 
             //appears pdf button
             $("#exportpdfUser").addClass("hidden");
@@ -90,12 +88,19 @@ function listBetweenAgendas() {
         }
 
     })
+    setTimeout(function(){ $('#agendaReportsTableList').DataTable(); }, 300);
 
 }
 
 function listUser() {
     $(".listed").remove();
     $("#extraInfo").remove();
+
+    var table = $('#agendaReportsTableList').DataTable();
+    var tableTwo = $('#paymentReportsTableList').DataTable();
+    table.destroy();
+    tableTwo.destroy();
+
     $.ajax({
         type: "POST", url: "/api/users/list/"
     }).done(function (res) {
@@ -109,10 +114,6 @@ function listUser() {
             $("#usersReportsTableList").removeClass("hidden").addClass("tableListed");
             $("#agendaReportsTableList").addClass("hidden").removeClass("tableListed");
             $("#paymentReportsTableList").addClass("hidden").removeClass("tableListed");
-
-            $('#agendaManageButtonList').prop("disabled", false);
-            $('#userManageButtonList').prop("disabled", true);
-            $('#paymentManageButtonList').prop("disabled", false);
 
             //appears pdf button
             $("#exportpdfAgenda").addClass("hidden");
@@ -152,22 +153,26 @@ function listUser() {
         }
 
     })
+    setTimeout(function(){ $('#usersReportsTableList').DataTable(); }, 300);
 }
 
 function lisPaymenttUser() {
     $(".listed").remove();
     $("#extraInfo").remove();
 
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
+    var table = $('#usersReportsTableList').DataTable();
+    var tableTwo = $('#agendaReportsTableList').DataTable();
+    table.destroy();
+    tableTwo.destroy();
 
-    actualIsoDate = yyyy + "-" + mm + "-" + dd + "T00:00:00.000Z";
+    var dateStart = $('#dateStart').val();
+    var dateEnd = $('#dateEnd').val();
+    var initalIsodate = dateStart + "T00:00:00.000Z";
+    var finalIsoDate = dateEnd + "T00:00:00.000Z";
 
     ajaxData = {};
-    ajaxData['startDate'] = "2000-01-01T04:00:00.000Z";//old date
-    ajaxData['endDate'] = actualIsoDate;//get all agendas until today
+    ajaxData['startDate'] = initalIsodate;
+    ajaxData['endDate'] = finalIsoDate;
 
     $.ajax({
         type: "POST", url: "/api/agendas/listBetweenAgenda/",
@@ -183,10 +188,6 @@ function lisPaymenttUser() {
             $("#paymentReportsTableList").removeClass("hidden").addClass("tableListed");
             $("#usersReportsTableList").addClass("hidden").removeClass("tableListed");
             $("#agendaReportsTableList").addClass("hidden").removeClass("tableListed");
-
-            $('#userManageButtonList').prop("disabled", false);
-            $('#agendaManageButtonList').prop("disabled", false);
-            $('#paymentManageButtonList').prop("disabled", true);
 
             //appears pdf button
             $("#exportpdfUser").addClass("hidden");
@@ -244,5 +245,5 @@ function lisPaymenttUser() {
         }
 
     })
-
+    setTimeout(function(){ $('#paymentReportsTableList').DataTable(); }, 300);
 }

@@ -37,7 +37,10 @@
   <script type="text/javascript" src="./static/js/validateUser.js"></script>
   <script type="text/javascript" src="./static/js/handlerUser.js"></script>
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   <link rel="stylesheet" href="./static/css/my_style.css">
+  
   <!-- My CSSs -->
   <script type="text/javascript">
     var listCount = 0
@@ -336,7 +339,7 @@
       $("#cpf").mask('000.000.000-00', { reverse: true });
       $("#phone").mask('(00)000000000');
       $("#cpfUp").mask('000.000.000-00', { reverse: true });
-      $("#phoneUp").mask('(00)000000000');
+      $("#phoneUp").mask('(00)000000000');      
     });
     $(document).ready(function () {
       $('.sidebar-menu').tree();
@@ -345,6 +348,8 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
+      $('#userManageButtonList').trigger('click');
+      setTimeout(function(){ $('#userTableList').DataTable(); }, 300);
     })
     function showCreateUser() {
       $("#userTableList").addClass("hidden").removeClass("tableListed");

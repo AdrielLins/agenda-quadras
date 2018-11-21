@@ -38,6 +38,8 @@
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
     crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   <link rel="stylesheet" href="./static/css/my_style.css">
   <!-- My CSSs -->
   <script type="text/javascript">
@@ -138,6 +140,14 @@
         <section class="content">
           <div class="col-xs-12">
             <div class="box">
+              <div class="form-group has-feedback">
+                <h4>Entre qual data deseja filtrar seus relatórios?</h4>
+                <label for="exampleInputEmail1">Data Inicial: </label>
+                <input type="date" id="dateStart" min="2010-01-01" value="2018-08-01">
+                <label for="exampleInputEmail1">Data Final: </label>
+                <input type="date" id="dateEnd" min="2010-01-01" onblur="todayDate(this.value)" value="2019-02-01">
+              </div>
+              <br>
               <section class="box-header with-border">
                 <h1>Relatórios gerais</h1>
               </section>
@@ -276,6 +286,7 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
+      $('#agendaManageButtonList').trigger('click');
     })
 
 

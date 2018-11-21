@@ -72,6 +72,7 @@ function listAvaliableAgenda() {
         }
 
     })
+    setTimeout(function(){ $('#agendaTableList').DataTable(); }, 300);
 }
 // listar agendamentos concluídos do usuário
 function listFinishedAgenda() {
@@ -140,6 +141,7 @@ function listFinishedAgenda() {
 
         }
     })
+    setTimeout(function(){ $('#agendaTableUserList').DataTable(); }, 300);
 }
 // setar agendamento para o usuário
 function setAgendaForUser(agendaId) {

@@ -37,6 +37,8 @@
   <script type="text/javascript" src="./static/js/validateSport.js"></script>
   <script type="text/javascript" src="./static/js/handlerSport.js"></script>
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   <link rel="stylesheet" href="./static/css/my_style.css">
   <!-- My CSSs -->
   <script type="text/javascript">
@@ -273,6 +275,8 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
+      $('#sportManageButtonList').trigger('click');
+      setTimeout(function(){ $('#sportTableList').DataTable(); }, 300);
     })
     function showCreateSport() {
       $("#sportTableList").addClass("hidden").removeClass("tableListed");

@@ -37,6 +37,8 @@
   <script type="text/javascript" src="./static/js/validateAgenda.js"></script>
   <script type="text/javascript" src="./static/js/handlerAgenda.js"></script>
   <script src="./static/plugins/alertifyjs/alertify.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   <link rel="stylesheet" href="./static/css/my_style.css">
   <!-- My CSSs -->
   <script type="text/javascript">
@@ -398,6 +400,8 @@
       } else {
         $("#ferramentasAdm").removeClass("hidden");
       }
+      $('#agendaManageButtonList').trigger('click');
+      setTimeout(function(){ $('#agendaTableList').DataTable(); }, 300);      
     })
     function showCreateAgenda() {
       $("#agendaTableList").addClass("hidden").removeClass("tableListed");
