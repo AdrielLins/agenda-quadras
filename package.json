@@ -4,7 +4,7 @@
   "description": "projeto integrador II",
   "main": "server.js",
   "scripts": {
-    "start": "server.js",
+    "start": "node server.js",
     "test": "mocha --timeout 10000"
   },
   "repository": {
