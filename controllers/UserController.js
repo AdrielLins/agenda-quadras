@@ -1,5 +1,5 @@
 const User = require('../models/UserModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 var statusCode = require('http-status-codes');
 
 exports.CreateUser = function (req, res, next) {
