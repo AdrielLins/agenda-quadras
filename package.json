@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "projeto integrador II",
   "main": "server.js",
+  "engines":{
+    "node": "8.11.3",
+    "npm":"5.6.0"
+  },
   "scripts": {
     "start": "node server.js",
     "test": "mocha --timeout 10000"
