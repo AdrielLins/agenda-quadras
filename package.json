@@ -4,7 +4,7 @@
   "description": "projeto integrador II",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=dev && nodemon server.js",
+    "start": "server.js",
     "test": "mocha --timeout 10000"
   },
   "repository": {
