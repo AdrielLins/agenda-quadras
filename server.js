@@ -69,11 +69,13 @@ app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
   res.status(400).json({ err: err });
 });
-
-const port = process.env.PORT || 5000;
-
-const server = app.listen(port, () => {
-  console.log('Server is up and running on port number ' + port);
+//for use on heroku deployments
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
+//const server = app.listen(port, () => {
+//  console.log('Server is up and running on port number ' + port);
+//});
 
 module.exports = app //for unitary testing
