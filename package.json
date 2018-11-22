@@ -23,7 +23,7 @@
   "homepage": "https://github.com/AdrielLins/agenda-quadras#readme",
   "dependencies": {
     "admin-lte": "^2.4.8",
-    "bcrypt": "^3.0.0",
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.3",
     "circular-json": "^0.5.5",
     "cookie-parser": "^1.4.3",
