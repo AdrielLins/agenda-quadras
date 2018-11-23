@@ -26,7 +26,7 @@ app.use(session({
     expires: 600000
   },
   store: new MongoStore({
-    url: 'mongodb://admin:masterkey1@ds115154.mlab.com:15154/session'
+    url: 'mongodb://admin:masterkey1@ds119113.mlab.com:19113/adrielprojectfortests'
   })
 }));
 
