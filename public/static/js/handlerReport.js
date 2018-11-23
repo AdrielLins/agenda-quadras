@@ -67,13 +67,21 @@ function listBetweenAgendas() {
                     totalTime = String(totalTime) + ":00";
                 }
 
-                var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
-                var agendaHour = "<input type='text' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + " - " + totalTime + "'>";
+                var agendaDay = dateAgendaSplited[0];
+                var splitDay = agendaDay.split("-")
+
+                var day = splitDay[2];
+                var month = splitDay[1];
+                var year = splitDay[0];
+
+                dateToShow = day + "/" + month + "/" + year;
+
+                var agendaHour = hourAgendaSplited[0].toString() + " - " + totalTime.toString();
 
                 $("#agendaReportsTableList").append(
                     "<tr class='listed'>" +
                     "<td> " + userEmail + "</td>" +
-                    "<td> " + agendaDay + "</td>" +
+                    "<td> " + dateToShow + "</td>" +
                     "<td> " + agendaHour + "</td>" +
                     "<td> " + quadraNumero + "</td>" +
                     "<td>R$ " + esporteValor + "</td>" +
@@ -227,13 +235,20 @@ function lisPaymenttUser() {
                     totalTime = String(totalTime) + ":00";
                 }
 
-                var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
-                var agendaHour = "<input type='text' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + " - " + totalTime + "'>";
+                var agendaDay = dateAgendaSplited[0];
+                var splitDay = agendaDay.split("-")
 
+                var day = splitDay[2];
+                var month = splitDay[1];
+                var year = splitDay[0];
+
+                dateToShow = day + "/" + month + "/" + year;
+
+                var agendaHour = hourAgendaSplited[0].toString() + " - " + totalTime.toString();
                 $("#paymentReportsTableList").append(
                     "<tr class='listed'>" +
                     "<td> " + userEmail + "</td>" +
-                    "<td> " + agendaDay + "</td>" +
+                    "<td> " + dateToShow + "</td>" +
                     "<td> " + agendaHour + "</td>" +
                     "<td> " + quadraNumero + "</td>" +
                     "<td>R$ " + esporteValor + "</td>" +
