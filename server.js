@@ -25,7 +25,9 @@ app.use(session({
   cookie: {
     expires: 600000
   },
-  store: new MongoStore( url: 'mongodb://admin:masterkey1@ds115154.mlab.com:15154/session')
+  store: new MongoStore({
+    url: 'mongodb://admin:masterkey1@ds115154.mlab.com:15154/session'
+  })
 }));
 
 // This check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
