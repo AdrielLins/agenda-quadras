@@ -27,6 +27,8 @@ app.use(session({
   },
   store: new MongoStore({
     url: 'mongodb://admin:masterkey1@ds119113.mlab.com:19113/adrielprojectfortests'
+    //for local use
+    //url: 'mongodb://127.0.0.1:27017/'
   })
 }));
 
