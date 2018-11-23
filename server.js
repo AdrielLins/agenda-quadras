@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 var morgan = require('morgan');
 const app = express();
 const cors = require('cors');
@@ -23,7 +24,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     expires: 600000
-  }
+  },
+  store: new MongoStore(options)
 }));
 
 // This check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
