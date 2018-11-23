@@ -54,8 +54,8 @@ function listAvaliableAgenda() {
                 } else {
                     totalTime = String(totalTime) + ":00";
                 }
-                var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
-                var agendaHour = "<input type='text' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + " - " + totalTime + "'>";
+                var agendaDay = "<input  style='border: none;background: bottom' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
+                var agendaHour = "<input type='text' style='border: none;background: bottom' disabled value='" + hourAgendaSplited[0] + " - " + totalTime + "'>";
 
                 $("#agendaTableList").append(
                     "<tr class='listed'>" +
@@ -122,8 +122,8 @@ function listFinishedAgenda() {
                 if (!resultado) {
                     resultado = "Não definido"
                 }
-                var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
-                var agendaHour = "<input type='text' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + " - " + totalTime + "'>";
+                var agendaDay = "<input  style='border: none;background: bottom' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
+                var agendaHour = "<input type='text' style='border: none;background: bottom' disabled value='" + hourAgendaSplited[0] + " - " + totalTime + "'>";
 
                 $("#agendaTableUserList").append(
                     "<tr class='listed'>" +

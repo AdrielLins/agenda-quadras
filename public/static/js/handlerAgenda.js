@@ -46,11 +46,11 @@ function listAgenda() {
                     editButton = '<button type="button" onclick="showUpdateAgenda(' + buttonAgendaId + ')" class="btn btn-primary btn-flat">Editar</button>';
                 }
 
-                var agendaDay = "<input  style='border: none;background: white' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
-                var agendaHour = "<input type='time' style='border: none;background: white' disabled value='" + hourAgendaSplited[0] + "'>";
+                var agendaDay = "<input  style='border: none;background: bottom' type='date' disabled value='" + dateAgendaSplited[0] + "'>";
+                var agendaHour = "<input type='time' style='border: none;background: bottom' disabled value='" + hourAgendaSplited[0] + "'>";
 
 
-                //style='border: none;background: white'
+                //style='border: none;background: bottom'
                 if (userEmail == undefined) {
                     userEmail = "Sem usuário vinculado"
                 }
