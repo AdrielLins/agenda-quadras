@@ -4,7 +4,7 @@ var statusCode = require('http-status-codes');
 
 exports.CreateUser = function (req, res, next) {
     //encrypt password
-    let hash = bcrypt.hashSync(req.body.password, 10);
+    let hash = bcrypt.hashSync(req.body.password);
 
     let newUser = new User({
         email: req.body.email,
@@ -113,7 +113,7 @@ exports.UpdateUser = async function (req, res) {
         res.send(statusCode.UNAUTHORIZED);
         return;
     }
-    let updatePassword = bcrypt.hashSync(req.body.password, 10);
+    let updatePassword = bcrypt.hashSync(req.body.password);
     var userToUpdate = req.body.email
     User.findOne({ email: userToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -149,7 +149,7 @@ exports.UpdateUser = async function (req, res) {
 };
 
 exports.UpdateCurrentUser = async function (req, res) {
-    let updatePassword = bcrypt.hashSync(req.body.password, 10);
+    let updatePassword = bcrypt.hashSync(req.body.password);
     var userToUpdate = req.session.user;
     User.findOne({ email: userToUpdate }).exec(function (err, doc) {
         if (err) {
@@ -243,7 +243,7 @@ exports.ReadToRecoverUser = function (req, res) {
 };
 exports.UpdatePassRecovered = function (req, res) {
     var currentUser = req.session.userToRecover;
-    let updatePassword = bcrypt.hashSync(req.body.password, 10);
+    let updatePassword = bcrypt.hashSync(req.body.password);
     User.findOne({ email: currentUser }).exec(function (err, doc) {
         if (err) {
             res.send(err);
