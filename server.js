@@ -25,7 +25,7 @@ app.use(session({
   cookie: {
     expires: 600000
   },
-  store: new MongoStore(options)
+  store: new MongoStore(connectionDB)
 }));
 
 // This check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
