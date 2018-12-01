@@ -220,6 +220,8 @@ function lisPaymenttUser() {
 
                 if (status != "Agendado") {
                     continue
+                } if (dateAgendaCombined > startTodayDate()){
+                    continue
                 }
                 countUsers++
                 totalVal = totalVal + parseFloat(esporteValor);
@@ -266,4 +268,15 @@ function lisPaymenttUser() {
     })
     //insert list on data table after all page is loaded to avoid errors
     setTimeout(function(){ $('#paymentReportsTableList').DataTable(); }, 300);
+}
+
+function startTodayDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    return today;
 }
