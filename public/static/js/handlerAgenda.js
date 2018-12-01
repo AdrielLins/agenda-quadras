@@ -123,7 +123,7 @@ function registerAgendaByAdm() {
             alertify.alert('Atenção!', 'Este horário e quadra já está em uso!');
             return
         } else {
-            alertify.alert('Agenda criada com sucesso!', function () { alertify.success(window.location.href = "./manageAgenda.html"); });
+            alertify.alert('Agenda criada com sucesso!', function () { window.location.href = "./manageAgenda.html" });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -326,7 +326,7 @@ function updateAgenda(idAgenda) {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Atenção!', 'Agenda atualizada com sucesso!', function () { alertify.success(window.location.href = "./manageAgenda.html"); });
+            alertify.alert('Atenção!', 'Agenda atualizada com sucesso!', function () { window.location.href = "./manageAgenda.html" });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');

@@ -165,7 +165,7 @@ function registerByAdm() {
             alertify.alert('Atenção!', 'E-mail ou Cpf já estão sendo usados!');
             return
         } else {
-            alertify.alert('Atenção!', 'Usuário criado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
+            alertify.alert('Atenção!', 'Usuário criado com sucesso!', function () { window.location.href = "./manageUser.html" });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -223,7 +223,7 @@ function updateUser() {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Atenção!', 'Usuário atualizado com sucesso!', function () { alertify.success(window.location.href = "./manageUser.html"); });
+            alertify.alert('Atenção!', 'Usuário atualizado com sucesso!', function () { window.location.href = "./manageUser.html" });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
@@ -242,7 +242,7 @@ function sendEmail() {
         data: ajaxData
     }).done(function (res) {
         if (!res|| res =='') {
-            alertify.alert('Atenção!', 'E-mail não encontrado!', function () { alertify.success(window.location.href = "./forgotPass.html"); });
+            alertify.alert('Atenção!', 'E-mail não encontrado!', function () { window.location.href = "./forgotPass.html" });
 
         }
     })
@@ -252,7 +252,7 @@ function sendEmail() {
         data: ajaxData
     }).done(function (res) {
         if (!res|| res =='') {
-            alertify.alert('Atenção!', 'Houve algum problema ao mandar código de autenticação, favor tentar novamento em alguns minutos!', function () { alertify.success(window.location.href = "./forgotPass.html"); });
+            alertify.alert('Atenção!', 'Houve algum problema ao mandar código de autenticação, favor tentar novamento em alguns minutos!', function () { window.location.href = "./forgotPass.html" });
         } else {
             window.location.href = "./insertPass.html";
         }
@@ -294,7 +294,7 @@ function changePass() {
             alertify.alert('Atenção!', 'Token inválido');
             return
         } else {
-            alertify.alert('Atenção!', 'Senha alterada com sucesso, favor faça login para continuar!', function () { alertify.success(window.location.href = "./logout"); });
+            alertify.alert('Atenção!', 'Senha alterada com sucesso, favor faça login para continuar!', function () { window.location.href = "./logout" });
         }
     })
 }

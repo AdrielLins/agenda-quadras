@@ -35,7 +35,7 @@ function updateUser() {
             alertify.alert(res);
             return
         } else {
-            alertify.alert('Atenção!', 'Dados atualizados com sucesso!', function () { alertify.success(window.location.href = "./userData.html"); });
+            alertify.alert('Atenção!', 'Dados atualizados com sucesso!', function () { window.location.href = "./userData.html" });
         }
     }).fail(function (err) {
         alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');

@@ -156,7 +156,7 @@ function setAgendaForUser(agendaId) {
             alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
             return
         } else {
-            alertify.alert('Horário marcado com sucesso!', 'O pagamento deve ser realizado no local, Bom jogo!', function () { alertify.success(window.location.href = "./agenda.html"); });
+            alertify.alert('Horário marcado com sucesso!', 'O pagamento deve ser realizado no local, Bom jogo!', function () { window.location.href = "./agenda.html" });
         }
     })
 }
@@ -181,7 +181,7 @@ function confirmCancelAgenda(agendaId) {
             alertify.alert('Erro', 'Não foi possível realizar esta solicitação no momento.');
             return
         } else {
-            alertify.alert('Atenção!', 'Horário cancelado com sucesso!', function () { alertify.success(window.location.href = "./agenda.html"); });
+            alertify.alert('Atenção!', 'Horário cancelado com sucesso!', function () { window.location.href = "./agenda.html" });
         }
     })
 }
