@@ -218,9 +218,19 @@ function lisPaymenttUser() {
                 var esporteModalidade = ajaxData[i].esporteModalidade;
                 var status = ajaxData[i].status;
 
+                var agendaDay = dateAgendaSplited[0];
+                var splitDay = agendaDay.split("-")
+
+                var day = splitDay[2];
+                var month = splitDay[1];
+                var year = splitDay[0];
+
+                var dateToShow = day + "/" + month + "/" + year;
+
+                var dayOfToday = startTodayDate()
                 if (status != "Agendado") {
                     continue
-                } if (dateAgendaCombined > startTodayDate()){
+                } if (dateToShow > dayOfToday){
                     continue
                 }
                 countUsers++
@@ -236,15 +246,6 @@ function lisPaymenttUser() {
                 } else {
                     totalTime = String(totalTime) + ":00";
                 }
-
-                var agendaDay = dateAgendaSplited[0];
-                var splitDay = agendaDay.split("-")
-
-                var day = splitDay[2];
-                var month = splitDay[1];
-                var year = splitDay[0];
-
-                dateToShow = day + "/" + month + "/" + year;
 
                 var agendaHour = hourAgendaSplited[0].toString() + " - " + totalTime.toString();
                 $("#paymentReportsTableList").append(
