@@ -218,24 +218,24 @@ function lisPaymenttUser() {
                 var esporteModalidade = ajaxData[i].esporteModalidade;
                 var status = ajaxData[i].status;
 
+                var dateAgendaSplited = dateAgendaCombined.split("T");
                 var agendaDay = dateAgendaSplited[0];
                 var splitDay = agendaDay.split("-")
-
                 var day = splitDay[2];
                 var month = splitDay[1];
                 var year = splitDay[0];
-
+                
+                var dateToTest = year+"-"+month+"-"+day
                 var dateToShow = day + "/" + month + "/" + year;
 
                 var dayOfToday = startTodayDate()
                 if (status != "Agendado") {
                     continue
-                } if (dateToShow > dayOfToday){
+                } if (Date.parse(dateToTest) > Date.parse(dayOfToday)){
                     continue
                 }
                 countUsers++
                 totalVal = totalVal + parseFloat(esporteValor);
-                dateAgendaSplited = dateAgendaCombined.split("T");
                 var hourAgendaSplited = dateAgendaSplited[1].split(":00.000Z");
 
                 var totalTime = hourAgendaSplited[0].split(":");
